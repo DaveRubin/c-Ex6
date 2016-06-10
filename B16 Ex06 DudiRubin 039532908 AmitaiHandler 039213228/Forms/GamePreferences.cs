@@ -1,7 +1,7 @@
 ﻿namespace B16_Ex05.Forms
 {
     using System;
-    public class MainMenuGameSettingsArgs : EventArgs
+    public class GamePreferences : EventArgs
     {
 
         private int m_Rows;

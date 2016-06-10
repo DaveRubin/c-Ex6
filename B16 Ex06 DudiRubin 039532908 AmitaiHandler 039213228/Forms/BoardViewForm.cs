@@ -36,7 +36,7 @@ namespace B16_Ex05.Forms
         /// </summary>
         /// <param name="MainMenuGameSettingsArgs args"></param>
         /// <returns></returns>
-        public BoardViewForm(MainMenuGameSettingsArgs args)
+        public BoardViewForm(GamePreferences args)
         {
             m_NumOfColumns = args.Columns;
             m_NumOfRows = args.Rows;

@@ -21,6 +21,10 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
             {
                 LabelCurrentPlayerName.Text = value;
             }
+            get
+            {
+                return LabelCurrentPlayerName.Text;
+            }
         }
 
         public string Scores
@@ -28,6 +32,10 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
             set
             {
                 LabelScore.Text = value;
+            }
+            get
+            {
+                return LabelScore.Text;
             }
         }
     }

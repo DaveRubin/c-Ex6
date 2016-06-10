@@ -6,8 +6,8 @@ namespace B16_Ex05
 {
     internal class Player
     {
-        public readonly string r_name;
         private int m_score;
+        private string m_name;
         private bool m_isHuman;
         private Board.eSlotState m_pieceType;
 
@@ -32,10 +32,22 @@ namespace B16_Ex05
             }
         }
 
+        public string Name
+        {
+            get
+            {
+                return m_name;
+            }
+            set
+            {
+                m_name = value;
+            }
+        }
+
         public Player(string i_name, bool i_isHuman, Board.eSlotState i_pieceType)
         {
             m_isHuman = i_isHuman;
-            r_name = i_name;
+            m_name = i_name;
             m_pieceType = i_pieceType;
             m_score = 0;
         }

@@ -36,6 +36,25 @@ namespace B16_Ex05
             m_GameWrapperWindow.SetGameProperties += GameWrapperWindow_SetGameProperties;
             m_GameWrapperWindow.StartNewGame += GameWrapperWindow_StartNewGame;
             m_GameWrapperWindow.StartNewTournement += GameWrapperWindow_StartNewTournement;
+            m_GameWrapperWindow.Exit += m_GameWrapperWindow_Exit;
+            m_GameWrapperWindow.HowToPlay += GameWrapperWindow_HowToPlay;
+            m_GameWrapperWindow.About += GameWrapperWindow_About;
+        }
+
+        void GameWrapperWindow_About(object sender, EventArgs e)
+        {
+            
+        }
+
+        void GameWrapperWindow_HowToPlay(object sender, EventArgs e)
+        {
+            HowToPlayForm howToPlayForm = new HowToPlayForm();
+            howToPlayForm.ShowDialog();
+        }
+
+        void m_GameWrapperWindow_Exit(object sender, EventArgs e)
+        {
+            m_GameWrapperWindow.Close();
         }
 
         void GameWrapperWindow_StartNewTournement(object sender, EventArgs e)
@@ -87,11 +106,11 @@ namespace B16_Ex05
 
         void StartNewGame()
         {
-            MainMenuGameSettingsArgs gameSettings = m_GamePreferences.GameSettings;
+            GamePreferences gameSettings = m_GamePreferences.GameSettings;
             // from here we should initialize the game
+            InitializePlayers(gameSettings.Player1Name, gameSettings.Player2Name);
             InitializeBoardForm(gameSettings);
             InitializeBoard(gameSettings.Columns, gameSettings.Rows, m_BoardViewForm);
-            InitializePlayers(gameSettings.Player1Name, gameSettings.Player2Name);
 
             m_BoardViewForm.ShowDialog();
         }
@@ -109,10 +128,29 @@ namespace B16_Ex05
         /// Create the Board View Form from setting argument 
         /// <param name="MainMenuGameSettingsArgs args"></param>
         /// </summary>
-        private void InitializeBoardForm(MainMenuGameSettingsArgs args)
+        private void InitializeBoardForm(GamePreferences i_Preferences)
         {
-            m_BoardViewForm = new BoardViewForm(args);
+            m_BoardViewForm = new BoardViewForm(i_Preferences);
+            UpdateStatusBar();
             m_BoardViewForm.OnColumnSelectPressed += m_BoardViewForm_OnColumnSelectPressed;
+        }
+
+        private void UpdateStatusBar()
+        {
+            Player player1 = m_players[0];
+            Player player2 = m_players[1];
+
+            //update score
+            m_GameWrapperWindow.Scores = string.Format(
+                "{0}:{1},{2}:{3}",
+                player1.Name,
+                player1.Score,
+                player2.Name,
+                player2.Score);
+
+            //update current player
+            Player currentPlayer = m_players[m_currentPlayerIndex];
+            m_GameWrapperWindow.CurrentPlayer = currentPlayer.Name;
         }
 
         void m_BoardViewForm_OnColumnSelectPressed(int col)
@@ -125,9 +163,17 @@ namespace B16_Ex05
         /// </summary>
         private void InitializePlayers(string i_Player1Name, string i_Player2Name)
         {
-            m_players = new List<Player>();
-            m_players.Add(new Player(i_Player1Name, true, Board.eSlotState.Player1));
-            m_players.Add(new Player(i_Player2Name, true, Board.eSlotState.Player2));
+            if (m_players == null)
+            {
+                m_players = new List<Player>();
+                m_players.Add(new Player(i_Player1Name, true, Board.eSlotState.Player1));
+                m_players.Add(new Player(i_Player2Name, true, Board.eSlotState.Player2));
+            }
+            else
+            {
+                m_players[0].Name = i_Player1Name;
+                m_players[1].Name = i_Player2Name;
+            }
         }
 
         /// <summary>
@@ -166,6 +212,7 @@ namespace B16_Ex05
         {
             m_board.EmptyBoard();
             m_currentPlayerIndex = 0;
+            UpdateStatusBar();
             //TakeTurn();
         }
 
@@ -177,7 +224,7 @@ namespace B16_Ex05
             Player winner = m_players[m_currentPlayerIndex];
             winner.Score++;
             m_BoardViewForm.UpdatePlayersScore(m_players[0].Score, m_players[1].Score);
-            string winText = string.Format(GameTexts.k_WinScreenTemplate, winner.r_name);
+            string winText = string.Format(GameTexts.k_WinScreenTemplate, winner.Name);
             ShowEndingMessageBox(winText, GameTexts.k_WinWindowTitle);
         }
 

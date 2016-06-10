@@ -42,7 +42,7 @@ namespace B16_Ex05
             Console.ForegroundColor = GameColors.k_WinColor;
             // Ex02.ConsoleUtils.Screen.Clear();
 
-            Console.WriteLine(string.Format(GameTexts.k_WinScreenTemplate, i_winner.r_name));
+            Console.WriteLine(string.Format(GameTexts.k_WinScreenTemplate, i_winner.Name));
             Console.ReadLine();
             Console.ForegroundColor = GameColors.k_BaseColor;
         }
@@ -71,9 +71,9 @@ namespace B16_Ex05
             Console.WriteLine(
                 string.Format(
                     GameTexts.k_RestartGameScreenTemplate,
-                    i_playersList[0].r_name,
+                    i_playersList[0].Name,
                     i_playersList[0].Score,
-                    i_playersList[1].r_name,
+                    i_playersList[1].Name,
                     i_playersList[1].Score,
                     GameKeys.k_YesKey,
                     GameKeys.k_NoKey));

@@ -134,6 +134,8 @@
             this.GameStatusBar.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.GameStatusBar.Location = new System.Drawing.Point(0, 435);
             this.GameStatusBar.Name = "GameStatusBar";
+            this.GameStatusBar.PlayerName = "-";
+            this.GameStatusBar.Scores = "Waiting to start";
             this.GameStatusBar.Size = new System.Drawing.Size(501, 22);
             this.GameStatusBar.TabIndex = 1;
             // 

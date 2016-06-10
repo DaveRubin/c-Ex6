@@ -10,11 +10,11 @@ namespace B16_Ex05.Forms
         private readonly int r_minSizeVal;
         private readonly int r_maxSizeVal;
 
-        public MainMenuGameSettingsArgs GameSettings
+        public GamePreferences GameSettings
         {
             get
             {
-                return new MainMenuGameSettingsArgs
+                return new GamePreferences
                            {
                                Columns = (int)NumericCols.Value,
                                Rows = (int)NumericRows.Value,
