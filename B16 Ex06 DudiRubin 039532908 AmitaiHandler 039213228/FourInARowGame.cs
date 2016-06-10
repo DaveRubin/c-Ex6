@@ -43,7 +43,8 @@ namespace B16_Ex05
 
         void GameWrapperWindow_About(object sender, EventArgs e)
         {
-            
+            AboutForm aboutForm = new AboutForm();
+            aboutForm.ShowDialog();
         }
 
         void GameWrapperWindow_HowToPlay(object sender, EventArgs e)

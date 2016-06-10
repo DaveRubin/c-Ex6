@@ -44,10 +44,11 @@
             // 
             // TextBoxHowToPlay
             // 
-            this.TextBoxHowToPlay.Location = new System.Drawing.Point(13, 13);
+            this.TextBoxHowToPlay.Dock = System.Windows.Forms.DockStyle.Top;
+            this.TextBoxHowToPlay.Location = new System.Drawing.Point(0, 0);
             this.TextBoxHowToPlay.Multiline = true;
             this.TextBoxHowToPlay.Name = "TextBoxHowToPlay";
-            this.TextBoxHowToPlay.Size = new System.Drawing.Size(259, 207);
+            this.TextBoxHowToPlay.Size = new System.Drawing.Size(284, 220);
             this.TextBoxHowToPlay.TabIndex = 1;
             // 
             // HowToPlayForm
