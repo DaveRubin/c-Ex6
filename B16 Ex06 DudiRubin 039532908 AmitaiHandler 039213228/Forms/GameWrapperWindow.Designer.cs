@@ -39,7 +39,7 @@
             this.howToPlayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gameStatusBar1 = new B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls.GameStatusBar();
+            this.GameStatusBar = new B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls.GameStatusBar();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -71,18 +71,21 @@
             this.startANewGameToolStripMenuItem.Name = "startANewGameToolStripMenuItem";
             this.startANewGameToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
             this.startANewGameToolStripMenuItem.Text = "Start a New Game";
+            this.startANewGameToolStripMenuItem.Click += new System.EventHandler(this.startANewGameToolStripMenuItem_Click);
             // 
             // startANewTournementToolStripMenuItem
             // 
             this.startANewTournementToolStripMenuItem.Name = "startANewTournementToolStripMenuItem";
             this.startANewTournementToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
             this.startANewTournementToolStripMenuItem.Text = "Start a New Tournement";
+            this.startANewTournementToolStripMenuItem.Click += new System.EventHandler(this.startANewTournementToolStripMenuItem_Click);
             // 
             // propertiesToolStripMenuItem
             // 
             this.propertiesToolStripMenuItem.Name = "propertiesToolStripMenuItem";
             this.propertiesToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
             this.propertiesToolStripMenuItem.Text = "Properties...";
+            this.propertiesToolStripMenuItem.Click += new System.EventHandler(this.propertiesToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -94,6 +97,7 @@
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
             this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -108,35 +112,37 @@
             // howToPlayToolStripMenuItem
             // 
             this.howToPlayToolStripMenuItem.Name = "howToPlayToolStripMenuItem";
-            this.howToPlayToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.howToPlayToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.howToPlayToolStripMenuItem.Text = "How to play?";
+            this.howToPlayToolStripMenuItem.Click += new System.EventHandler(this.howToPlayToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(140, 6);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
-            // gameStatusBar1
+            // GameStatusBar
             // 
-            this.gameStatusBar1.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.gameStatusBar1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.gameStatusBar1.Location = new System.Drawing.Point(0, 424);
-            this.gameStatusBar1.Name = "gameStatusBar1";
-            this.gameStatusBar1.Size = new System.Drawing.Size(501, 33);
-            this.gameStatusBar1.TabIndex = 1;
+            this.GameStatusBar.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.GameStatusBar.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.GameStatusBar.Location = new System.Drawing.Point(0, 435);
+            this.GameStatusBar.Name = "GameStatusBar";
+            this.GameStatusBar.Size = new System.Drawing.Size(501, 22);
+            this.GameStatusBar.TabIndex = 1;
             // 
             // GameWrapperWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(501, 457);
-            this.Controls.Add(this.gameStatusBar1);
+            this.Controls.Add(this.GameStatusBar);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
@@ -163,6 +169,6 @@
         private System.Windows.Forms.ToolStripMenuItem howToPlayToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
-        private UserControls.GameStatusBar gameStatusBar1;
+        private UserControls.GameStatusBar GameStatusBar;
     }
 }

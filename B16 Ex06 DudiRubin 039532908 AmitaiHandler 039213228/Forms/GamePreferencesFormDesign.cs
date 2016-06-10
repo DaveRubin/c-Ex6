@@ -4,7 +4,7 @@ using System.Text;
 
 namespace B16_Ex05.Forms
 {
-    partial class MainMenuForm
+    partial class GamePreferencesForm
     {
         private System.Windows.Forms.NumericUpDown NumericRows;
         private System.Windows.Forms.NumericUpDown NumericCols;
@@ -145,7 +145,7 @@ namespace B16_Ex05.Forms
             this.Controls.Add(this.NumericRows);
             this.Controls.Add(this.ButtonStart);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "MainMenuForm";
+            this.Name = "GamePreferencesForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Game settings";
             ((System.ComponentModel.ISupportInitialize)(this.NumericRows)).EndInit();

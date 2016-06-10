@@ -5,7 +5,7 @@ using System.Windows.Forms;
 namespace B16_Ex05.Forms
 {
 
-    public partial class MainMenuForm : Form
+    public partial class GamePreferencesForm : Form
     {
         private readonly int r_minSizeVal;
         private readonly int r_maxSizeVal;
@@ -25,7 +25,7 @@ namespace B16_Ex05.Forms
             }
         }
 
-        public MainMenuForm(int i_MinSizeValue, int i_MaxSizeValue)
+        public GamePreferencesForm(int i_MinSizeValue, int i_MaxSizeValue)
         {
             r_minSizeVal = i_MinSizeValue;
             r_maxSizeVal = i_MaxSizeValue;

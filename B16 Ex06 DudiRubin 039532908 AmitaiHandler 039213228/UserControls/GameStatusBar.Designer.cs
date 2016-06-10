@@ -35,6 +35,7 @@
             // 
             // label1
             // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(24, 11);
             this.label1.Name = "label1";
@@ -46,6 +47,7 @@
             // 
             this.LabelScore.AccessibleDescription = "";
             this.LabelScore.AccessibleName = "LabelScore";
+            this.LabelScore.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.LabelScore.AutoSize = true;
             this.LabelScore.Location = new System.Drawing.Point(224, 11);
             this.LabelScore.Name = "LabelScore";
@@ -57,6 +59,7 @@
             // 
             this.LabelCurrentPlayerName.AccessibleDescription = "";
             this.LabelCurrentPlayerName.AccessibleName = "LabelCurrentPlayerName";
+            this.LabelCurrentPlayerName.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.LabelCurrentPlayerName.AutoSize = true;
             this.LabelCurrentPlayerName.Location = new System.Drawing.Point(99, 11);
             this.LabelCurrentPlayerName.Name = "LabelCurrentPlayerName";
