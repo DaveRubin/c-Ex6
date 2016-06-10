@@ -95,6 +95,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="UserControls\GameStatusBar.resx">
       <DependentUpon>GameStatusBar.cs</DependentUpon>
@@ -108,6 +109,21 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CoinRed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CoinYellow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EmptyCell.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FullCellRed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FullCellYellow.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
