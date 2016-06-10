@@ -15,33 +15,85 @@ namespace B16_Ex05
         public const int k_MinDimension = 4;
         public const int k_MaxDimension = 8;
 
+        private bool firstRun = true;
         private Board m_board;
         private BoardViewForm m_BoardViewForm;
+        private GamePreferencesForm m_GamePreferences;
+        private GameWrapperWindow m_GameWrapperWindow;
         private List<Player> m_players;
         private int m_currentPlayerIndex;
-        private eGameMode m_gameMode;
 
         public FourInARowGame()
         {
-            GameWrapperWindow gameWrapperWindow = new GameWrapperWindow();
-            gameWrapperWindow.ShowDialog();
-            //            MainMenuForm mainMenuForm = new MainMenuForm(k_MinDimension, k_MaxDimension);
-            //            mainMenuForm.ShowDialog();
-            //            if (mainMenuForm.DialogResult == DialogResult.OK)
-            //            {
-            //                OnStart(mainMenuForm.GameSettings);
-            //            }
+            m_GameWrapperWindow = new GameWrapperWindow();
+            m_GamePreferences = new GamePreferencesForm(k_MinDimension, k_MaxDimension);
+            ConnectEvenetsLeteners();
+            m_GameWrapperWindow.ShowDialog();
         }
 
-        void OnStart(MainMenuGameSettingsArgs i_GameSettings)
+        private void ConnectEvenetsLeteners()
         {
-            // Console.WriteLine(args);
+            m_GameWrapperWindow.SetGameProperties += GameWrapperWindow_SetGameProperties;
+            m_GameWrapperWindow.StartNewGame += GameWrapperWindow_StartNewGame;
+            m_GameWrapperWindow.StartNewTournement += GameWrapperWindow_StartNewTournement;
+        }
+
+        void GameWrapperWindow_StartNewTournement(object sender, EventArgs e)
+        {
+            StartNewTournemet();
+        }
+
+        private void StartNewTournemet()
+        {
+            foreach (Player player in m_players)
+            {
+                player.Score = 0;
+            }
+            StartNewGame();
+        }
+
+        void GameWrapperWindow_StartNewGame(object sender, EventArgs e)
+        {
+            StartNewGame();
+        }
+
+        void GameWrapperWindow_SetGameProperties(object sender, EventArgs e)
+        {
+            DialogResult result = m_GamePreferences.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                // if not first time, Ask to start a new game
+                // if selected OK then start a new game
+                // else display a message that changes will effect only in the next game 
+                if (firstRun)
+                {
+                    StartNewGame();
+                    firstRun = false;
+                }
+                else 
+                {
+                    DialogResult startAnotherGameResult = ShowYesNoMessageBox("Start a new game?", "4 in a row");
+                    if (startAnotherGameResult == DialogResult.Yes)
+                    {
+                        StartNewGame();
+                    }
+                    else
+                    {
+                        ShowMessageBox("Changes will take effect only in the next game","4 in a row");
+                    }
+                }
+            }
+        }
+
+        void StartNewGame()
+        {
+            MainMenuGameSettingsArgs gameSettings = m_GamePreferences.GameSettings;
             // from here we should initialize the game
-            InitializeBoardForm(i_GameSettings);
-            InitializeBoard(i_GameSettings.Columns, i_GameSettings.Rows, m_BoardViewForm);
-            InitializeGameMode(i_GameSettings.IsPlayerHuman, i_GameSettings.Player1Name, i_GameSettings.Player2Name);
-            
-            StartGame();
+            InitializeBoardForm(gameSettings);
+            InitializeBoard(gameSettings.Columns, gameSettings.Rows, m_BoardViewForm);
+            InitializePlayers(gameSettings.Player1Name, gameSettings.Player2Name);
+
+            m_BoardViewForm.ShowDialog();
         }
 
         /// <summary>
@@ -71,21 +123,11 @@ namespace B16_Ex05
         /// <summary>
         /// Get the game mode from user and initialize players
         /// </summary>
-        private void InitializeGameMode(bool i_IsPlayer2Human, string i_Player1Name, string i_Player2Name)
+        private void InitializePlayers(string i_Player1Name, string i_Player2Name)
         {
-            bool isPlayer1Human = true;
             m_players = new List<Player>();
-            m_players.Add(new Player(i_Player1Name, isPlayer1Human, Board.eSlotState.Player1));
-            m_players.Add(new Player(i_Player2Name, i_IsPlayer2Human, Board.eSlotState.Player2));
-        }
-
-        /// <summary>
-        /// Start the game for the first time
-        /// </summary>
-        private void StartGame()
-        {
-            //Open board view and start game logic
-            m_BoardViewForm.ShowDialog();
+            m_players.Add(new Player(i_Player1Name, true, Board.eSlotState.Player1));
+            m_players.Add(new Player(i_Player2Name, true, Board.eSlotState.Player2));
         }
 
         /// <summary>
@@ -141,15 +183,26 @@ namespace B16_Ex05
 
         private void ShowEndingMessageBox(string i_MainBoxText, string i_WindowTitle)
         {
+            DialogResult result = ShowYesNoMessageBox(i_MainBoxText, i_WindowTitle);
+            if (result == DialogResult.Yes)
+            {
+                PlayAgain();
+            }
+        }
+
+        private DialogResult ShowYesNoMessageBox(string i_MainBoxText, string i_WindowTitle)
+        {
             DialogResult result = MessageBox.Show(
                 i_MainBoxText,
                 i_WindowTitle,
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Question);
-            if (result == DialogResult.Yes)
-            {
-                PlayAgain();
-            }
+            return result;
+        }
+
+        private void ShowMessageBox(string i_Message, string i_WindowTitle)
+        {
+            MessageBox.Show(i_Message, i_WindowTitle);
         }
 
         /// <summary>
@@ -182,12 +235,6 @@ namespace B16_Ex05
         {
             Board.eSlotState opponentPieceType = Board.eSlotState.Player1;
             return AI.SelectMove(ref m_board, Board.eSlotState.Player2, opponentPieceType);
-        }
-
-        public enum eGameMode
-        {
-            TwoPlayers,
-            ManVsMachine
         }
     }
 }

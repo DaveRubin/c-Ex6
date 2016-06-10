@@ -43,6 +43,15 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.Forms
             InitializeComponent();
         }
 
+        protected override void OnShown(EventArgs e)
+        {
+            base.OnShown(e);
+            if (SetGameProperties != null)
+            {
+                SetGameProperties.Invoke(null,null);
+            }
+        }
+
         /// <summary>
         /// Mark coordinates in board
         /// </summary>

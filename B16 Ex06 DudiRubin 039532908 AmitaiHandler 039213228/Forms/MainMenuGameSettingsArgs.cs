@@ -6,7 +6,6 @@
 
         private int m_Rows;
         private int m_Columns;
-        private bool m_IsPlayerHuman;
         private string m_Player1Name;
         private string m_Player2Name;
 
@@ -33,17 +32,7 @@
                 m_Columns = value;
             }
         }
-        public bool IsPlayerHuman
-        {
-            get
-            {
-                return m_IsPlayerHuman;
-            }
-            set
-            {
-                m_IsPlayerHuman = value;
-            }
-        }
+
         public string Player1Name
         {
             get

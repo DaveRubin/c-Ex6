@@ -34,32 +34,6 @@ namespace B16_Ex05
         }
 
         /// <summary>
-        /// Prints game mode menu
-        /// </summary>
-        /// <returns></returns>
-        public static FourInARowGame.eGameMode GetGameMode()
-        {
-            // Ex02.ConsoleUtils.Screen.Clear();
-            Console.ForegroundColor = GameColors.k_MenuHeadersColor;
-            FourInARowGame.eGameMode selectedGameMode = FourInARowGame.eGameMode.ManVsMachine;
-            string descriptionText = string.Format(
-                GameTexts.k_GameModeDescriptionTemplate,
-                GameKeys.k_TwoPlayersSelectionKey,
-                GameKeys.k_ManVsMachineSelectionKey);
-            Console.WriteLine(string.Format(GameTexts.k_MenuHeaderTemplate, GameTexts.k_GameModeTitle, descriptionText));
-
-            char userInput = InputUtils.GetSepcificCharsFromConsole(GameKeys.k_TwoPlayersSelectionKey, GameKeys.k_ManVsMachineSelectionKey);
-
-            if (userInput == GameKeys.k_TwoPlayersSelectionKey)
-            {
-                selectedGameMode = FourInARowGame.eGameMode.TwoPlayers;
-            }
-
-            Console.ForegroundColor = GameColors.k_BaseColor;
-            return selectedGameMode;
-        }
-
-        /// <summary>
         /// Prints win screen, adds winner name to screen template
         /// </summary>
         /// <param name="i_winner"></param>

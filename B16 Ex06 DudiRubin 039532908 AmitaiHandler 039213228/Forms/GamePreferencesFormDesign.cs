@@ -8,7 +8,6 @@ namespace B16_Ex05.Forms
     {
         private System.Windows.Forms.NumericUpDown NumericRows;
         private System.Windows.Forms.NumericUpDown NumericCols;
-        private System.Windows.Forms.CheckBox CheckboxPlayer2Human;
         private System.Windows.Forms.TextBox TextboxPlayer2Name;
         private System.Windows.Forms.TextBox TextboxPlayer1Name;
         private System.Windows.Forms.Label label1;
@@ -16,14 +15,15 @@ namespace B16_Ex05.Forms
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button ButtonStart;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button ButtonCancel;
+        private System.Windows.Forms.Button ButtonOk;
 
         private void InitializeComponent()
         {
-            this.ButtonStart = new System.Windows.Forms.Button();
+            this.ButtonOk = new System.Windows.Forms.Button();
             this.NumericRows = new System.Windows.Forms.NumericUpDown();
             this.NumericCols = new System.Windows.Forms.NumericUpDown();
-            this.CheckboxPlayer2Human = new System.Windows.Forms.CheckBox();
             this.TextboxPlayer2Name = new System.Windows.Forms.TextBox();
             this.TextboxPlayer1Name = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -31,18 +31,20 @@ namespace B16_Ex05.Forms
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.ButtonCancel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.NumericRows)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumericCols)).BeginInit();
             this.SuspendLayout();
             // 
-            // ButtonStart
+            // ButtonOk
             // 
-            this.ButtonStart.Location = new System.Drawing.Point(12, 161);
-            this.ButtonStart.Name = "ButtonStart";
-            this.ButtonStart.Size = new System.Drawing.Size(189, 23);
-            this.ButtonStart.TabIndex = 0;
-            this.ButtonStart.Text = "Start";
-            this.ButtonStart.UseVisualStyleBackColor = true;
+            this.ButtonOk.Location = new System.Drawing.Point(12, 161);
+            this.ButtonOk.Name = "ButtonOk";
+            this.ButtonOk.Size = new System.Drawing.Size(94, 23);
+            this.ButtonOk.TabIndex = 0;
+            this.ButtonOk.Text = "OK";
+            this.ButtonOk.UseVisualStyleBackColor = true;
             // 
             // NumericRows
             // 
@@ -57,16 +59,6 @@ namespace B16_Ex05.Forms
             this.NumericCols.Name = "NumericCols";
             this.NumericCols.Size = new System.Drawing.Size(35, 20);
             this.NumericCols.TabIndex = 2;
-            // 
-            // CheckboxPlayer2Human
-            // 
-            this.CheckboxPlayer2Human.AutoSize = true;
-            this.CheckboxPlayer2Human.Location = new System.Drawing.Point(19, 58);
-            this.CheckboxPlayer2Human.Name = "CheckboxPlayer2Human";
-            this.CheckboxPlayer2Human.Size = new System.Drawing.Size(67, 17);
-            this.CheckboxPlayer2Human.TabIndex = 3;
-            this.CheckboxPlayer2Human.Text = "Player 2:";
-            this.CheckboxPlayer2Human.UseVisualStyleBackColor = true;
             // 
             // TextboxPlayer2Name
             // 
@@ -129,10 +121,31 @@ namespace B16_Ex05.Forms
             this.label5.TabIndex = 10;
             this.label5.Text = "Cols:";
             // 
-            // MainMenuForm
+            // label6
             // 
-            this.AcceptButton = this.ButtonStart;
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(19, 58);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(48, 13);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "Player 2:";
+            // 
+            // ButtonCancel
+            // 
+            this.ButtonCancel.Location = new System.Drawing.Point(112, 161);
+            this.ButtonCancel.Name = "ButtonCancel";
+            this.ButtonCancel.Size = new System.Drawing.Size(94, 23);
+            this.ButtonCancel.TabIndex = 12;
+            this.ButtonCancel.Text = "Cancel";
+            this.ButtonCancel.UseVisualStyleBackColor = true;
+            // 
+            // GamePreferencesForm
+            // 
+            this.AcceptButton = this.ButtonOk;
+            this.CancelButton = this.ButtonCancel;
             this.ClientSize = new System.Drawing.Size(213, 196);
+            this.Controls.Add(this.ButtonCancel);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -140,10 +153,9 @@ namespace B16_Ex05.Forms
             this.Controls.Add(this.label1);
             this.Controls.Add(this.TextboxPlayer1Name);
             this.Controls.Add(this.TextboxPlayer2Name);
-            this.Controls.Add(this.CheckboxPlayer2Human);
             this.Controls.Add(this.NumericCols);
             this.Controls.Add(this.NumericRows);
-            this.Controls.Add(this.ButtonStart);
+            this.Controls.Add(this.ButtonOk);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "GamePreferencesForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
