@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.GameMenu = new System.Windows.Forms.MenuStrip();
             this.gameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.startANewGameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.startANewTournementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -39,20 +39,21 @@
             this.howToPlayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.GameBoard = new B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls.BoardUserControl();
             this.GameStatusBar = new B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls.GameStatusBar();
-            this.menuStrip1.SuspendLayout();
+            this.GameMenu.SuspendLayout();
             this.SuspendLayout();
             // 
-            // menuStrip1
+            // GameMenu
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.GameMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.gameToolStripMenuItem,
             this.helpToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(501, 24);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menuStrip1";
+            this.GameMenu.Location = new System.Drawing.Point(0, 0);
+            this.GameMenu.Name = "GameMenu";
+            this.GameMenu.Size = new System.Drawing.Size(501, 24);
+            this.GameMenu.TabIndex = 0;
+            this.GameMenu.Text = "menuStrip1";
             // 
             // gameToolStripMenuItem
             // 
@@ -128,6 +129,16 @@
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
+            // GameBoard
+            // 
+            this.GameBoard.BoardSize = new System.Drawing.Point(4, 4);
+            this.GameBoard.Location = new System.Drawing.Point(0, 27);
+            this.GameBoard.MaximumSize = new System.Drawing.Size(268, 335);
+            this.GameBoard.MinimumSize = new System.Drawing.Size(268, 335);
+            this.GameBoard.Name = "GameBoard";
+            this.GameBoard.Size = new System.Drawing.Size(268, 335);
+            this.GameBoard.TabIndex = 2;
+            // 
             // GameStatusBar
             // 
             this.GameStatusBar.BackColor = System.Drawing.SystemColors.AppWorkspace;
@@ -144,15 +155,16 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(501, 457);
+            this.Controls.Add(this.GameBoard);
             this.Controls.Add(this.GameStatusBar);
-            this.Controls.Add(this.menuStrip1);
-            this.MainMenuStrip = this.menuStrip1;
+            this.Controls.Add(this.GameMenu);
+            this.MainMenuStrip = this.GameMenu;
             this.MaximizeBox = false;
             this.Name = "GameWrapperWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GameWrapperWindow";
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.GameMenu.ResumeLayout(false);
+            this.GameMenu.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -160,7 +172,7 @@
 
         #endregion
 
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.MenuStrip GameMenu;
         private System.Windows.Forms.ToolStripMenuItem gameToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem startANewGameToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem startANewTournementToolStripMenuItem;
@@ -172,5 +184,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private UserControls.GameStatusBar GameStatusBar;
+        private UserControls.BoardUserControl GameBoard;
     }
 }

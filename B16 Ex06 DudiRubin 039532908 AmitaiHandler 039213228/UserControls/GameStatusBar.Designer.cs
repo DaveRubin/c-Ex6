@@ -42,18 +42,20 @@
             this.label1.Size = new System.Drawing.Size(79, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Current Player: ";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // LabelScore
             // 
             this.LabelScore.AccessibleDescription = "";
             this.LabelScore.AccessibleName = "LabelScore";
-            this.LabelScore.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.LabelScore.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.LabelScore.AutoSize = true;
-            this.LabelScore.Location = new System.Drawing.Point(224, 11);
+            this.LabelScore.Location = new System.Drawing.Point(428, 11);
             this.LabelScore.Name = "LabelScore";
-            this.LabelScore.Size = new System.Drawing.Size(35, 13);
+            this.LabelScore.Size = new System.Drawing.Size(50, 13);
             this.LabelScore.TabIndex = 1;
-            this.LabelScore.Text = "label2";
+            this.LabelScore.Text = "fadsfasdf";
+            this.LabelScore.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // LabelCurrentPlayerName
             // 
@@ -66,6 +68,7 @@
             this.LabelCurrentPlayerName.Size = new System.Drawing.Size(64, 13);
             this.LabelCurrentPlayerName.TabIndex = 2;
             this.LabelCurrentPlayerName.Text = "PlayerName";
+            this.LabelCurrentPlayerName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // GameStatusBar
             // 

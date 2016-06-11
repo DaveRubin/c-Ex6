@@ -87,17 +87,23 @@
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserControls\Board.cs">
+    <Compile Include="UserControls\BoardUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControls\Board.Designer.cs">
-      <DependentUpon>Board.cs</DependentUpon>
+    <Compile Include="UserControls\BoardUserControl.Designer.cs">
+      <DependentUpon>BoardUserControl.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\BoardCell.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="UserControls\BoardCell.Designer.cs">
       <DependentUpon>BoardCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ColumnSelector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ColumnSelector.Designer.cs">
+      <DependentUpon>ColumnSelector.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\GameStatusBar.cs">
       <SubType>UserControl</SubType>

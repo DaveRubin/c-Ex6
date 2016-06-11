@@ -1,6 +1,6 @@
 ﻿namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
 {
-    partial class Board
+    partial class BoardUserControl
     {
         /// <summary> 
         /// Required designer variable.

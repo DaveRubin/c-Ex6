@@ -22,6 +22,16 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.Forms
         public delegate void ColumnSelectEventHandler(int col);
         public event ColumnSelectEventHandler OnColumnSelectPressed;
 
+        public Point GameDimensions
+        {
+            set
+            {
+                GameBoard.BoardSize = value;
+                FitWindowToGame();
+            }
+            get { return GameBoard.BoardSize; }
+        }
+
         public string CurrentPlayer
         {
             set { GameStatusBar.PlayerName = value; }
@@ -37,6 +47,7 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.Forms
         public GameWrapperWindow()
         {
             InitializeComponent();
+            GameDimensions = new Point(4,4);
         }
 
         protected override void OnShown(EventArgs e)
@@ -55,6 +66,17 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.Forms
         public void MarkWinningRow(List<Point> i_WinningCoordinates)
         {
 
+        }
+
+        /// <summary>
+        /// Calculate all elements and resize client view
+        /// </summary>
+        private void FitWindowToGame()
+        {
+            Point size = new Point(GameBoard.Size.Width, GameBoard.Size.Height);
+            size.Y += GameMenu.Height;
+            size.Y += GameStatusBar.Height;
+            ClientSize = new Size(size);
         }
 
         private void startANewGameToolStripMenuItem_Click(object sender, EventArgs e)
