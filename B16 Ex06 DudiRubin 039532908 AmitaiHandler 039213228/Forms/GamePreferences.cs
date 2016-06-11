@@ -1,4 +1,4 @@
-﻿namespace B16_Ex05.Forms
+﻿namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.Forms
 {
     using System;
     public class GamePreferences : EventArgs

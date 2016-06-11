@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace B16_Ex05
+namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228
 {
     /// <summary>
     /// Container class for all messages and string templates used in game

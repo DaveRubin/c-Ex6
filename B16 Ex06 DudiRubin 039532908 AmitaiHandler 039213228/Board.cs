@@ -4,10 +4,11 @@ using System.Text;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace B16_Ex05
+namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228
 {
-    using B16_Ex05.Forms;
-    internal class Board
+    using B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.Forms;
+
+    public class Board
     {
         public readonly int r_numOfRows;
         public readonly int r_numOfColumns;

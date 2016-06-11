@@ -87,6 +87,18 @@
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserControls\Board.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Board.Designer.cs">
+      <DependentUpon>Board.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\BoardCell.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UserControls\BoardCell.Designer.cs">
+      <DependentUpon>BoardCell.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\GameStatusBar.cs">
       <SubType>UserControl</SubType>
     </Compile>

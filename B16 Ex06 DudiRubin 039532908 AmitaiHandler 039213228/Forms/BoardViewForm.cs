@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace B16_Ex05.Forms
+namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.Forms
 {
     using System;
     using System.Drawing;
     using System.Windows.Forms;
 
-    internal class BoardViewForm : Form
+    public class BoardViewForm : Form
     {
         internal Label Player1Label = new Label();
         internal Label Player2Label = new Label();
