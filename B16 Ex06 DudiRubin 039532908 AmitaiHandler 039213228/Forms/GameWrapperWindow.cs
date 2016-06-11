@@ -48,6 +48,15 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.Forms
         {
             InitializeComponent();
             GameDimensions = new Point(4,4);
+            GameBoard.OnColumnSelectPressed += GameBoard_OnColumnSelectPressed;
+        }
+
+        void GameBoard_OnColumnSelectPressed(int col)
+        {
+            if (OnColumnSelectPressed != null)
+            {
+                OnColumnSelectPressed.Invoke(col);   
+            }
         }
 
         protected override void OnShown(EventArgs e)
@@ -66,6 +75,11 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.Forms
         public void MarkWinningRow(List<Point> i_WinningCoordinates)
         {
 
+        }
+
+        public void AddPieceToColumn(int i_ColumnSelected, Board.eSlotState i_PlayerPieceType)
+        {
+            GameBoard.AddPieceToColumn(i_ColumnSelected, i_PlayerPieceType);
         }
 
         /// <summary>

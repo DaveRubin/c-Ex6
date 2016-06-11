@@ -12,6 +12,12 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
 
     public partial class ColumnSelector : UserControl
     {
+
+        private const int k_IdleOpacity = 0;
+        private const int k_HoverOpacity = 30;
+        private const int k_ClickOpacity = 80;
+        private static readonly Color rs_BaseColor = Color.Crimson;
+
         public ColumnSelector()
         {
             InitializeComponent();
@@ -24,7 +30,31 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
             Size = new Size(size);
             MaximumSize = new Size(size);
             MinimumSize = new Size(size);
-            BackColor = Color.FromArgb(30, Color.Aqua);
+            BackColor = Color.FromArgb(k_IdleOpacity, rs_BaseColor);
+        }
+
+        protected override void OnMouseLeave(EventArgs e)
+        {
+            base.OnMouseLeave(e);
+            BackColor = Color.FromArgb(k_IdleOpacity, rs_BaseColor);
+        }
+
+        protected override void OnMouseEnter(EventArgs e)
+        {
+            base.OnMouseEnter(e);
+            BackColor = Color.FromArgb(k_HoverOpacity, rs_BaseColor);
+        }
+
+        protected override void OnMouseDown(MouseEventArgs e)
+        {
+            base.OnMouseDown(e);
+            BackColor = Color.FromArgb(k_ClickOpacity, rs_BaseColor);
+        }
+
+        protected override void OnMouseUp(MouseEventArgs e)
+        {
+            base.OnMouseUp(e);
+            BackColor = Color.FromArgb(k_HoverOpacity, rs_BaseColor);
         }
     }
 }

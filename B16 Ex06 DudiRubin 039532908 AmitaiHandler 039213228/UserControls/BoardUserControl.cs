@@ -8,13 +8,17 @@ using System.Windows.Forms;
 
 namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
 {
+    using System.Diagnostics;
+
+    using B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.Forms;
+
     public partial class BoardUserControl : UserControl
     {
         private Point m_boardSize;
         private Point m_CellSize;
         private BoardCell[,] m_CellMatrix;
-        private List<ColumnSelector> m_ColumnSelectors;
-
+        private List<ColumnSelector> m_ColumnSelectors; 
+        public event GameWrapperWindow.ColumnSelectEventHandler OnColumnSelectPressed;
 
         public Point BoardSize
         {
@@ -76,8 +80,21 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
             {
                 ColumnSelector selector = new ColumnSelector();
                 selector.Location = new Point(m_CellSize.X * x, 0);
+                selector.Click += selector_Click;
+                m_ColumnSelectors.Add(selector);
                 Controls.Add(selector);
             }
+        }
+
+        private void selector_Click(object sender, EventArgs e)
+        {
+            ColumnSelector senderSelector = sender as ColumnSelector;
+            int columnSelected = m_ColumnSelectors.IndexOf(senderSelector);
+            if (OnColumnSelectPressed != null)
+            {
+                OnColumnSelectPressed.Invoke(columnSelected);
+            }
+            Debug.Print(columnSelected.ToString());
         }
 
         /// <summary>
@@ -121,6 +138,38 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
             }
 
             m_ColumnSelectors.Clear();
+        }
+
+        public void AddPieceToColumn(int i_ColumnSelected, Board.eSlotState i_PlayerPieceType)
+        {
+            //Find empty largest index of empty cell 
+            int cellIndex = -1;
+            bool topCell = false;
+            for (int y = 0; y < BoardSize.Y; y++)
+            {
+                BoardCell cell = m_CellMatrix[i_ColumnSelected, y];
+                if (cell.CurrentState == Board.eSlotState.Empty)
+                {
+                    cellIndex = y;
+                    //foundCell = cell;
+                    
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            //then change its view
+            if (cellIndex != -1)
+            {
+                BoardCell foundCell = m_CellMatrix[i_ColumnSelected, cellIndex];
+                foundCell.CurrentState = i_PlayerPieceType;
+                if (cellIndex == 0)
+                {
+                    m_ColumnSelectors[i_ColumnSelected].Enabled = false;
+                }
+            }
         }
     }
 }

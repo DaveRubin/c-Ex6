@@ -37,6 +37,12 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228
             m_GameWrapperWindow.Exit += m_GameWrapperWindow_Exit;
             m_GameWrapperWindow.HowToPlay += GameWrapperWindow_HowToPlay;
             m_GameWrapperWindow.About += GameWrapperWindow_About;
+            m_GameWrapperWindow.OnColumnSelectPressed += GameWrapperWindow_OnColumnSelectPressed;
+        }
+
+        void GameWrapperWindow_OnColumnSelectPressed(int col)
+        {
+            TakeTurn(col);
         }
 
         void GameWrapperWindow_About(object sender, EventArgs e)
@@ -111,7 +117,7 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228
             InitializeBoardForm(gameSettings);
             InitializeBoard(gameSettings.Columns, gameSettings.Rows, m_BoardViewForm);
 
-            m_BoardViewForm.ShowDialog();
+            //m_BoardViewForm.ShowDialog();
         }
 
         /// <summary>
@@ -131,7 +137,7 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228
         {
             m_BoardViewForm = new BoardViewForm(i_Preferences);
             UpdateStatusBar();
-            m_BoardViewForm.OnColumnSelectPressed += m_BoardViewForm_OnColumnSelectPressed;
+            //m_BoardViewForm.OnColumnSelectPressed += m_BoardViewForm_OnColumnSelectPressed;
         }
 
         private void UpdateStatusBar()
@@ -274,7 +280,8 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228
             Board.eSlotState playerPieceType = (m_currentPlayerIndex == 0)
                                                    ? Board.eSlotState.Player1
                                                    : Board.eSlotState.Player2;
-            m_board.AddPieceToColumn(i_ColumnSelected, playerPieceType);
+            //m_board.AddPieceToColumn(i_ColumnSelected, playerPieceType);
+            m_GameWrapperWindow.AddPieceToColumn(i_ColumnSelected, playerPieceType);
         }
 
         private int ComputerColumnSelection()
