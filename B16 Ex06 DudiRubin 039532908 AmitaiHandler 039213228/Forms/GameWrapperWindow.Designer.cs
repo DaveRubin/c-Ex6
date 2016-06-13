@@ -39,10 +39,12 @@
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.howToPlayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem(); 
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CursorFollower = new B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls.FallingPiece();
             this.GameBoard = new B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls.BoardUserControl();
             this.GameStatusBar = new B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls.GameStatusBar();
             this.GameMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CursorFollower)).BeginInit();
             this.SuspendLayout();
             // 
             // GameMenu
@@ -130,9 +132,22 @@
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
+            // CursorFollower
+            // 
+            this.CursorFollower.Image = ((System.Drawing.Image)(resources.GetObject("CursorFollower.Image")));
+            this.CursorFollower.Location = new System.Drawing.Point(43, 116);
+            this.CursorFollower.MaximumSize = new System.Drawing.Size(60, 60);
+            this.CursorFollower.MinimumSize = new System.Drawing.Size(60, 60);
+            this.CursorFollower.Name = "CursorFollower";
+            this.CursorFollower.Size = new System.Drawing.Size(60, 60);
+            this.CursorFollower.TabIndex = 3;
+            this.CursorFollower.TabStop = false;
+            this.CursorFollower.Type = B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.Board.eSlotState.Player1;
+            // 
             // GameBoard
             // 
             this.GameBoard.BoardSize = new System.Drawing.Point(4, 4);
+            this.GameBoard.CurrrentPlayer = B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.Board.eSlotState.Empty;
             this.GameBoard.Location = new System.Drawing.Point(0, 27);
             this.GameBoard.MaximumSize = new System.Drawing.Size(268, 335);
             this.GameBoard.MinimumSize = new System.Drawing.Size(268, 335);
@@ -156,6 +171,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(501, 457);
+            this.Controls.Add(this.CursorFollower);
             this.Controls.Add(this.GameBoard);
             this.Controls.Add(this.GameStatusBar);
             this.Controls.Add(this.GameMenu);
@@ -166,6 +182,7 @@
             this.Text = "GameWrapperWindow";
             this.GameMenu.ResumeLayout(false);
             this.GameMenu.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CursorFollower)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -186,5 +203,6 @@
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private UserControls.GameStatusBar GameStatusBar;
         private UserControls.BoardUserControl GameBoard;
+        private UserControls.FallingPiece CursorFollower;
     }
 }

@@ -9,6 +9,9 @@ using System.Windows.Forms;
 namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.Forms
 {
     using System.Diagnostics;
+    using System.Drawing.Drawing2D;
+
+    using B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.Properties;
 
     public partial class GameWrapperWindow : Form
     {
@@ -43,6 +46,7 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.Forms
             set
             {
                 GameBoard.CurrrentPlayer = value;
+                CursorFollower.Image = (value == Board.eSlotState.Player1) ? Resources.CoinRed : Resources.CoinYellow;
             } 
         }
 
@@ -57,6 +61,26 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.Forms
             InitializeComponent();
             GameDimensions = new Point(4,4);
             GameBoard.OnColumnSelectPressed += GameBoard_OnColumnSelectPressed;
+            SetCursorFollower();
+        }
+
+        private void SetCursorFollower()
+        {
+            Timer loopTimer = new Timer();
+            loopTimer.Interval = 10;
+            loopTimer.Tick += loopTimer_Tick;
+            loopTimer.Start();
+
+            CursorFollower.Enabled = false;
+            GraphicsPath path = new GraphicsPath();
+            path.AddEllipse(0, 0, CursorFollower.Width, CursorFollower.Height);
+            CursorFollower.Region = new Region(path);
+        }
+
+        private void loopTimer_Tick(object sender, EventArgs e)
+        {
+            CursorFollower.Location = PointToClient(Cursor.Position);
+            CursorFollower.BringToFront();
         }
 
         void GameBoard_OnColumnSelectPressed(int col)
@@ -147,6 +171,11 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.Forms
             {
                 About.Invoke(sender, e);   
             }
+        }
+
+        private void boardCell1_MouseMove(object sender, MouseEventArgs e)
+        {
+            Debug.Print("A");
         }
     }
 }

@@ -147,7 +147,7 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
             return (index+1)*m_CellSize.Y;
         }
 
-        void fallingPiece_MotionFinished(object sender, EventArgs e)
+        private void fallingPiece_MotionFinished(object sender, EventArgs e)
         {
             FallingPiece piece = sender as FallingPiece;
             piece.MotionFinished -= fallingPiece_MotionFinished;
