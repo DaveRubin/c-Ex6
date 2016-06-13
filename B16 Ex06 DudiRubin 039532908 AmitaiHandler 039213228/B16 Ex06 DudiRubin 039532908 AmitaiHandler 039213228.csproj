@@ -102,6 +102,12 @@
     <Compile Include="UserControls\ColumnSelector.Designer.cs">
       <DependentUpon>ColumnSelector.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\FallingPiece.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UserControls\FallingPiece.Designer.cs">
+      <DependentUpon>FallingPiece.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\GameStatusBar.cs">
       <SubType>UserControl</SubType>
     </Compile>

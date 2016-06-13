@@ -19,7 +19,20 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
         private BoardCell[,] m_CellMatrix;
         private List<ColumnSelector> m_ColumnSelectors; 
         public event GameWrapperWindow.ColumnSelectEventHandler OnColumnSelectPressed;
+        private Board.eSlotState m_CuerrentPlayer ;
+        private int m_ColumnSelected;
 
+        public Board.eSlotState CurrrentPlayer
+        {
+            get
+            {
+                return m_CuerrentPlayer;
+            }
+            set
+            {
+                m_CuerrentPlayer = value;
+            }
+        }
         public Point BoardSize
         {
             get
@@ -102,11 +115,48 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
         {
             ColumnSelector senderSelector = sender as ColumnSelector;
             int columnSelected = m_ColumnSelectors.IndexOf(senderSelector);
+
+            FallingPiece fallingPiece = new FallingPiece();
+            Controls.Add(fallingPiece);
+            fallingPiece.Type = m_CuerrentPlayer;
+            fallingPiece.Left = m_CellSize.X * columnSelected;
+            int targetHeight = GetTargetHeight(columnSelected);
+            fallingPiece.MoveToY(targetHeight, 1000);
+            fallingPiece.MotionFinished += fallingPiece_MotionFinished;
+            m_ColumnSelected = columnSelected;
+            BringAllBoardCellsToFrontAndSelectorsToBack();
+
+            Debug.Print(columnSelected.ToString());
+        }
+
+        private int GetTargetHeight(int i_ColumnSelected)
+        {
+            int index = 0;
+            for (int y = 0; y < BoardSize.Y; y++)
+            {
+                BoardCell cell = m_CellMatrix[i_ColumnSelected, y];
+                if (cell.CurrentState == Board.eSlotState.Empty)
+                {
+                    index = y;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            return (index+1)*m_CellSize.Y;
+        }
+
+        void fallingPiece_MotionFinished(object sender, EventArgs e)
+        {
+            FallingPiece piece = sender as FallingPiece;
+            piece.MotionFinished -= fallingPiece_MotionFinished;
+            Controls.Remove(piece);
+
             if (OnColumnSelectPressed != null)
             {
-                OnColumnSelectPressed.Invoke(columnSelected);
+                OnColumnSelectPressed.Invoke(m_ColumnSelected);
             }
-            Debug.Print(columnSelected.ToString());
         }
 
         /// <summary>
@@ -175,11 +225,6 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
             }
 
             CheckForFullColumnsAndLockSelectors();
-//
-            BoardCell newb = new BoardCell();
-            Controls.Add(newb);
-            newb.Location = new Point(40, 40);
-            BringAllBoardCellsToFrontAndSelectorsToBack();
         }
 
         /// <summary>

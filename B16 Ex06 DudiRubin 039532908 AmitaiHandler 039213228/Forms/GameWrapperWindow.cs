@@ -34,8 +34,16 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.Forms
 
         public string CurrentPlayer
         {
-            set { GameStatusBar.PlayerName = value; }
+            set{ GameStatusBar.PlayerName = value; }
             get { return GameStatusBar.PlayerName; }
+        }
+
+        public Board.eSlotState CurrentESlotState
+        {
+            set
+            {
+                GameBoard.CurrrentPlayer = value;
+            } 
         }
 
         public string Scores

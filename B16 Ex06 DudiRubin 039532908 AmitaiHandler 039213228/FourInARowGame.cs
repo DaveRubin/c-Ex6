@@ -165,6 +165,8 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228
             //update current player
             Player currentPlayer = m_players[m_currentPlayerIndex];
             m_GameWrapperWindow.CurrentPlayer = currentPlayer.Name;
+            Board.eSlotState slot = (m_currentPlayerIndex == 0) ? Board.eSlotState.Player1 : Board.eSlotState.Player2;
+            m_GameWrapperWindow.CurrentESlotState = slot;
         }
 
         private void m_BoardViewForm_OnColumnSelectPressed(int col)
@@ -209,6 +211,7 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228
             else
             {
                 m_currentPlayerIndex = (m_currentPlayerIndex + 1) % 2;
+                UpdateStatusBar();
                 if (!m_players[m_currentPlayerIndex].IsHuman)
                 {
                     int selectedColumn = ComputerColumnSelection();
