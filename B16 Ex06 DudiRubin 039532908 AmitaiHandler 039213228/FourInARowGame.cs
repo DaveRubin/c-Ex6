@@ -4,6 +4,7 @@ using System.Text;
 
 namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228
 {
+    using System.Drawing;
     using System.Windows.Forms;
 
     using B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.Forms;
@@ -76,12 +77,12 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228
             StartNewGame();
         }
 
-        void GameWrapperWindow_StartNewGame(object sender, EventArgs e)
+        private void GameWrapperWindow_StartNewGame(object sender, EventArgs e)
         {
             StartNewGame();
         }
 
-        void GameWrapperWindow_SetGameProperties(object sender, EventArgs e)
+        private void GameWrapperWindow_SetGameProperties(object sender, EventArgs e)
         {
             DialogResult result = m_GamePreferences.ShowDialog();
             if (result == DialogResult.OK)
@@ -92,9 +93,9 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228
                 if (firstRun)
                 {
                     StartNewGame();
-                    firstRun = false;
+                    firstRun = false;   
                 }
-                else 
+                else
                 {
                     DialogResult startAnotherGameResult = ShowYesNoMessageBox("Start a new game?", "4 in a row");
                     if (startAnotherGameResult == DialogResult.Yes)
@@ -103,21 +104,23 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228
                     }
                     else
                     {
-                        ShowMessageBox("Changes will take effect only in the next game","4 in a row");
+                        ShowMessageBox("Changes will take effect only in the next game", "4 in a row");
                     }
                 }
             }
+            else if (firstRun)
+            {
+                ExitGame();
+            }
         }
 
-        void StartNewGame()
+        private void StartNewGame()
         {
             GamePreferences gameSettings = m_GamePreferences.GameSettings;
             // from here we should initialize the game
             InitializePlayers(gameSettings.Player1Name, gameSettings.Player2Name);
             InitializeBoardForm(gameSettings);
             InitializeBoard(gameSettings.Columns, gameSettings.Rows, m_BoardViewForm);
-
-            //m_BoardViewForm.ShowDialog();
         }
 
         /// <summary>
@@ -130,18 +133,19 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228
             m_board.BoardViewUpdate += board_BoardViewUpdate;
         }
 
-        void board_BoardViewUpdate(Board.eSlotState[,] i_CellMatrix)
+        private void board_BoardViewUpdate(Board.eSlotState[,] i_CellMatrix)
         {
             m_GameWrapperWindow.UpdateBoard(i_CellMatrix);
         }
 
         /// <summary>
         /// Create the Board View Form from setting argument 
-        /// <param name="MainMenuGameSettingsArgs args"></param>
+        /// <param name="GamePreferences i_Preferences"></param>
         /// </summary>
         private void InitializeBoardForm(GamePreferences i_Preferences)
         {
-            m_BoardViewForm = new BoardViewForm(i_Preferences);
+            //m_BoardViewForm = new BoardViewForm(i_Preferences);
+            m_GameWrapperWindow.GameDimensions = new Point(i_Preferences.Columns, i_Preferences.Rows);
             UpdateStatusBar();
             //m_BoardViewForm.OnColumnSelectPressed += m_BoardViewForm_OnColumnSelectPressed;
         }
@@ -164,7 +168,7 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228
             m_GameWrapperWindow.CurrentPlayer = currentPlayer.Name;
         }
 
-        void m_BoardViewForm_OnColumnSelectPressed(int col)
+        private void m_BoardViewForm_OnColumnSelectPressed(int col)
         {
             TakeTurn(col);
         }
@@ -221,10 +225,8 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228
 
         private void PlayAgain()
         {
-            m_board.EmptyBoard();
             m_currentPlayerIndex = 0;
-            UpdateStatusBar();
-            //TakeTurn();
+            StartNewGame();
         }
 
         /// <summary>
@@ -246,6 +248,15 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228
             {
                 PlayAgain();
             }
+            else
+            {
+                ExitGame();
+            }
+        }
+
+        private void ExitGame()
+        {
+            m_GameWrapperWindow.Close();
         }
 
         private DialogResult ShowYesNoMessageBox(string i_MainBoxText, string i_WindowTitle)
@@ -277,17 +288,10 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228
         /// </summary>
         private void PlayerMove(int i_ColumnSelected)
         {
-            //int selectedColumn = i_ColumnSelected;
-            //if (!m_players[m_currentPlayerIndex].IsHuman)
-            //{
-            //    selectedColumn = ComputerColumnSelection();
-            //}
-
             Board.eSlotState playerPieceType = (m_currentPlayerIndex == 0)
                                                    ? Board.eSlotState.Player1
                                                    : Board.eSlotState.Player2;
             m_board.AddPieceToColumn(i_ColumnSelected, playerPieceType);
-            //m_GameWrapperWindow.AddPieceToColumn(i_ColumnSelected, playerPieceType);
         }
 
         private int ComputerColumnSelection()

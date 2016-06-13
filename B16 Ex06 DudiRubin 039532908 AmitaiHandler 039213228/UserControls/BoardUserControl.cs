@@ -49,7 +49,7 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
             CreateBoardMatrix();
             //create column selectors
             CreateSelectors();
-            SetControlSizes();
+            SetControlDimensions();
         }
 
         private void CreateBoardMatrix()
@@ -100,7 +100,7 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
         /// <summary>
         /// Set stiff size for component according to its size
         /// </summary>
-        private void SetControlSizes()
+        private void SetControlDimensions()
         {
             //add extra row for selectors
             Point sizeInPixels = new Point(BoardSize.X* m_CellSize.X, (BoardSize.Y + 1) * m_CellSize.Y);
@@ -140,38 +140,10 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
             m_ColumnSelectors.Clear();
         }
 
-        public void AddPieceToColumn(int i_ColumnSelected, Board.eSlotState i_PlayerPieceType)
-        {
-            //Find empty largest index of empty cell 
-            int cellIndex = -1;
-            bool topCell = false;
-            for (int y = 0; y < BoardSize.Y; y++)
-            {
-                BoardCell cell = m_CellMatrix[i_ColumnSelected, y];
-                if (cell.CurrentState == Board.eSlotState.Empty)
-                {
-                    cellIndex = y;
-                    //foundCell = cell;
-                    
-                }
-                else
-                {
-                    break;
-                }
-            }
-
-            //then change its view
-            if (cellIndex != -1)
-            {
-                BoardCell foundCell = m_CellMatrix[i_ColumnSelected, cellIndex];
-                foundCell.CurrentState = i_PlayerPieceType;
-                if (cellIndex == 0)
-                {
-                    m_ColumnSelectors[i_ColumnSelected].Enabled = false;
-                }
-            }
-        }
-
+        /// <summary>
+        /// Update board and validate selectors
+        /// </summary>
+        /// <param name="i_CellMatrix"></param>
         public void UpdateBoard(Board.eSlotState[,] i_CellMatrix)
         {
             int width = i_CellMatrix.GetLength(0);
@@ -188,6 +160,19 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
 
                 }
                 
+            }
+
+            CheckForFullColumnsAndLockSelectors();
+        }
+
+        /// <summary>
+        /// Check if column selectors is enables or not
+        /// </summary>
+        private void CheckForFullColumnsAndLockSelectors()
+        {
+            for (int i = 0; i < m_ColumnSelectors.Count ; i++)
+            {
+                m_ColumnSelectors[i].Enabled = m_CellMatrix[i, 0].CurrentState == Board.eSlotState.Empty;
             }
         }
     }

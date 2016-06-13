@@ -77,11 +77,6 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.Forms
 
         }
 
-        public void AddPieceToColumn(int i_ColumnSelected, Board.eSlotState i_PlayerPieceType)
-        {
-            GameBoard.AddPieceToColumn(i_ColumnSelected, i_PlayerPieceType);
-        }
-
         public void UpdateBoard(Board.eSlotState[,] i_CellMatrix)
         {
             GameBoard.UpdateBoard(i_CellMatrix);
