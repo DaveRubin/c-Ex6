@@ -16,7 +16,6 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228
 
         private bool firstRun = true;
         private Board m_board;
-        private BoardViewForm m_BoardViewForm;
         private GamePreferencesForm m_GamePreferences;
         private GameWrapperWindow m_GameWrapperWindow;
         private List<Player> m_players;
@@ -120,16 +119,16 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228
             // from here we should initialize the game
             InitializePlayers(gameSettings.Player1Name, gameSettings.Player2Name);
             InitializeBoardForm(gameSettings);
-            InitializeBoard(gameSettings.Columns, gameSettings.Rows, m_BoardViewForm);
+            InitializeBoard(gameSettings.Columns, gameSettings.Rows);
         }
 
         /// <summary>
         /// Get Board dimensions from user and initialize it
         /// </summary>
-        private void InitializeBoard(int i_Columns, int i_Rows, BoardViewForm i_BoardView) 
+        private void InitializeBoard(int i_Columns, int i_Rows) 
         {
             // initialize board
-            m_board = new Board(i_Columns, i_Rows, i_BoardView);
+            m_board = new Board(i_Columns, i_Rows);
             m_board.BoardViewUpdate += board_BoardViewUpdate;
         }
 

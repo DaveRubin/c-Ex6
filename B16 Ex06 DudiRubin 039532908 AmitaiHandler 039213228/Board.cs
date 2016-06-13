@@ -50,7 +50,7 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228
         /// </summary>
         /// <param name="i_columns"></param>
         /// <param name="i_rows"></param>
-        public Board(int i_columns, int i_rows, BoardViewForm i_BoardView)
+        public Board(int i_columns, int i_rows)
         {
             r_numOfRows = i_rows;
             r_numOfColumns = i_columns;
