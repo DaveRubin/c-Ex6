@@ -127,6 +127,12 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228
         {
             // initialize board
             m_board = new Board(i_Columns, i_Rows, i_BoardView);
+            m_board.BoardViewUpdate += board_BoardViewUpdate;
+        }
+
+        void board_BoardViewUpdate(Board.eSlotState[,] i_CellMatrix)
+        {
+            m_GameWrapperWindow.UpdateBoard(i_CellMatrix);
         }
 
         /// <summary>
@@ -228,7 +234,7 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228
         {
             Player winner = m_players[m_currentPlayerIndex];
             winner.Score++;
-            m_BoardViewForm.UpdatePlayersScore(m_players[0].Score, m_players[1].Score);
+            //m_BoardViewForm.UpdatePlayersScore(m_players[0].Score, m_players[1].Score);
             string winText = string.Format(GameTexts.k_WinScreenTemplate, winner.Name);
             ShowEndingMessageBox(winText, GameTexts.k_WinWindowTitle);
         }
@@ -280,8 +286,8 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228
             Board.eSlotState playerPieceType = (m_currentPlayerIndex == 0)
                                                    ? Board.eSlotState.Player1
                                                    : Board.eSlotState.Player2;
-            //m_board.AddPieceToColumn(i_ColumnSelected, playerPieceType);
-            m_GameWrapperWindow.AddPieceToColumn(i_ColumnSelected, playerPieceType);
+            m_board.AddPieceToColumn(i_ColumnSelected, playerPieceType);
+            //m_GameWrapperWindow.AddPieceToColumn(i_ColumnSelected, playerPieceType);
         }
 
         private int ComputerColumnSelection()

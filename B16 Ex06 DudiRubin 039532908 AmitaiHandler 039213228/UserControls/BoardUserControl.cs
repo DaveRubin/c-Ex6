@@ -171,5 +171,24 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
                 }
             }
         }
+
+        public void UpdateBoard(Board.eSlotState[,] i_CellMatrix)
+        {
+            int width = i_CellMatrix.GetLength(0);
+            int height = i_CellMatrix.GetLength(1);
+            for (int x = 0; x < width; x++)
+            {
+                for (int y = 0; y < height; y++)
+                {
+                    if (i_CellMatrix[x, y] != Board.eSlotState.Empty)
+                    {
+                        Debug.Print("{0},{1}",x,y);
+                    }
+                    m_CellMatrix[x, y].CurrentState = i_CellMatrix[x, y];
+
+                }
+                
+            }
+        }
     }
 }

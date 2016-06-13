@@ -13,7 +13,9 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228
         public readonly int r_numOfRows;
         public readonly int r_numOfColumns;
         public eSlotState[,] m_slotsMatrix;
-        BoardViewForm m_BoardView;
+
+        public delegate void BoardUpdateHandler(eSlotState[,] i_CellMatrix);
+        public event BoardUpdateHandler BoardViewUpdate;
         
 
         public eSlotState[,] SlotsMatrix
@@ -53,9 +55,16 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228
             r_numOfRows = i_rows;
             r_numOfColumns = i_columns;
             m_slotsMatrix = new eSlotState[i_columns, i_rows];
-            m_BoardView = i_BoardView;
             EmptyBoard();
-            m_BoardView.UpdateBoard(m_slotsMatrix);
+            UpdateBoardView();
+        }
+
+        public void UpdateBoardView()
+        {
+            if (BoardViewUpdate != null)
+            {
+                BoardViewUpdate.Invoke(m_slotsMatrix);
+            }
         }
 
         // add piece to column , 
@@ -73,7 +82,7 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228
                 }
 
                 m_slotsMatrix[i_column, targetRow] = i_pieceType;
-                m_BoardView.UpdateBoard(m_slotsMatrix);
+                UpdateBoardView();
             }
             else
             {
@@ -102,7 +111,7 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228
            {
                m_slotsMatrix[i_column, 0] = eSlotState.Empty;
            }
-           m_BoardView.UpdateBoard(m_slotsMatrix);
+           UpdateBoardView();
         }
 
         /// <summary>
@@ -117,8 +126,7 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228
                     m_slotsMatrix[i, j] = eSlotState.Empty;
                 }
             }
-            m_BoardView.UpdateBoard(m_slotsMatrix);
-            m_BoardView.EnableAllButtons();
+            UpdateBoardView();
         }
 
         private List<int> full = new List<int>(); 
@@ -134,7 +142,6 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228
             if (!full.Contains(i_column) && res == false)
             {
                 full.Add(i_column);
-                m_BoardView.m_ColumnSelectionButtonsArray[i_column].Enabled = false;
             }
             return res;
         }
