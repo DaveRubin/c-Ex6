@@ -42,6 +42,18 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
             BoardSize = new Point(4, 4);
         }
 
+        private void BringAllBoardCellsToFrontAndSelectorsToBack()
+        {
+            foreach (BoardCell boardCell in m_CellMatrix)
+            {
+                boardCell.BringToFront();
+            }
+            foreach (ColumnSelector columnSelector in m_ColumnSelectors)
+            {
+                columnSelector.SendToBack();
+            }
+        }
+
         private void RedrawBoard()
         {
             m_CellMatrix = new BoardCell[m_boardSize.X, m_boardSize.Y];
@@ -68,7 +80,7 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
                     }
 
                     m_CellMatrix[x, y] = newCell;
-                    newCell.Location = new Point(m_CellSize.X * x, m_CellSize.Y * (y + 1));
+                    newCell.Location = new Point(m_CellSize.X * x, m_CellSize.Y * (y+1) );
                     Controls.Add(m_CellMatrix[x, y]);
                 }
             }
@@ -163,6 +175,11 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
             }
 
             CheckForFullColumnsAndLockSelectors();
+//
+            BoardCell newb = new BoardCell();
+            Controls.Add(newb);
+            newb.Location = new Point(40, 40);
+            BringAllBoardCellsToFrontAndSelectorsToBack();
         }
 
         /// <summary>

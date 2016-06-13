@@ -130,6 +130,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UserControls\BoardUserControl.resx">
+      <DependentUpon>BoardUserControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\GameStatusBar.resx">
       <DependentUpon>GameStatusBar.cs</DependentUpon>
     </EmbeddedResource>
