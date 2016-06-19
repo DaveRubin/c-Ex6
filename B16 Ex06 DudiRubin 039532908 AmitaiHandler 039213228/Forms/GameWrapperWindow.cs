@@ -66,21 +66,7 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.Forms
 
         private void SetCursorFollower()
         {
-            Timer loopTimer = new Timer();
-            loopTimer.Interval = 10;
-            loopTimer.Tick += loopTimer_Tick;
-            loopTimer.Start();
-
-            CursorFollower.Enabled = false;
-            GraphicsPath path = new GraphicsPath();
-            path.AddEllipse(0, 0, CursorFollower.Width, CursorFollower.Height);
-            CursorFollower.Region = new Region(path);
-        }
-
-        private void loopTimer_Tick(object sender, EventArgs e)
-        {
-            CursorFollower.Location = PointToClient(Cursor.Position);
-            CursorFollower.BringToFront();
+            CursorFollower.SetActive(true);
         }
 
         void GameBoard_OnColumnSelectPressed(int col)

@@ -1,19 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
 {
     using B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.Properties;
 
-    public partial class FallingPiece : PictureBox
+    public partial class FallingPiece : Piece
     {
-        private Board.eSlotState m_type;
-        private int m_Ticks;
+
         private int m_TartgetPos;
         private float  m_ProceedEachTick;
         private float m_Position;
@@ -22,21 +17,10 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
 
         public event EventHandler MotionFinished;
 
-        public Board.eSlotState Type
-        {
-            get { return m_type;}
-            set
-            {
-                m_type = value;
-                RedrawImage();
-            }
-        }
-
 
         public FallingPiece()
         {
             InitializeComponent();
-            Type = Board.eSlotState.Player1;
             m_LoopTimer = new Timer();
             m_LoopTimer.Interval = k_MillisecondsInterval;
             m_LoopTimer.Tick += m_LoopTimer_Tick;
@@ -48,7 +32,6 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
             //calculate how many pixels per 10 ms we'll need 
             int times = i_DurationInMS / k_MillisecondsInterval;
             int delta = i_YTargetPos - Top;
-            m_Ticks = times;
             m_TartgetPos = i_YTargetPos;
             m_ProceedEachTick = (float)delta / times;
             m_LoopTimer.Start();
@@ -61,7 +44,6 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
             {
                 m_Position += m_ProceedEachTick;
                 Top += (int)m_Position;
-                m_Ticks--;
             }
             else
             {
@@ -72,24 +54,6 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
                 }
             }
             
-        }
-
-        private void RedrawImage()
-        {
-            Bitmap result;
-            if (m_type == Board.eSlotState.Player1)
-            {
-                result = Resources.CoinRed;
-            }
-            else
-            {
-                result = Resources.CoinYellow;
-            }
-
-            Image = result;
-            Size = new Size(result.Width,result.Height);
-            MinimumSize = Size;
-            MaximumSize = Size;
         }
 
         protected override void OnPaint(PaintEventArgs pe)

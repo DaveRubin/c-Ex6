@@ -108,11 +108,23 @@
     <Compile Include="UserControls\FallingPiece.Designer.cs">
       <DependentUpon>FallingPiece.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\FollowingPiece.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UserControls\FollowingPiece.Designer.cs">
+      <DependentUpon>FollowingPiece.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\GameStatusBar.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UserControls\GameStatusBar.Designer.cs">
       <DependentUpon>GameStatusBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Piece.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UserControls\Piece.Designer.cs">
+      <DependentUpon>Piece.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Forms\AboutForm.resx">
       <DependentUpon>AboutForm.cs</DependentUpon>
