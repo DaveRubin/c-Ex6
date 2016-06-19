@@ -237,5 +237,10 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
                 m_ColumnSelectors[i].Enabled = m_CellMatrix[i, 0].CurrentState == Board.eSlotState.Empty;
             }
         }
+
+        public void HighLightCoordinates(List<Point> i_WinningCoordinates)
+        {
+            
+        }
     }
 }

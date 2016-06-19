@@ -92,7 +92,7 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.Forms
         /// <param name="i_WinningCoordinates"></param>
         public void MarkWinningRow(List<Point> i_WinningCoordinates)
         {
-
+            GameBoard.HighLightCoordinates(i_WinningCoordinates);
         }
 
         public void UpdateBoard(Board.eSlotState[,] i_CellMatrix)
