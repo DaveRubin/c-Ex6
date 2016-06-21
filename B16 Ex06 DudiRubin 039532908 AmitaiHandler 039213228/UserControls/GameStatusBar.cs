@@ -17,25 +17,27 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
 
         public string PlayerName
         {
-            set
-            {
-                LabelCurrentPlayerName.Text = value;
-            }
             get
             {
                 return LabelCurrentPlayerName.Text;
+            }
+
+            set
+            {
+                LabelCurrentPlayerName.Text = value;
             }
         }
 
         public string Scores
         {
-            set
-            {
-                LabelScore.Text = value;
-            }
             get
             {
                 return LabelScore.Text;
+            }
+
+            set
+            {
+                LabelScore.Text = value;
             }
         }
     }
