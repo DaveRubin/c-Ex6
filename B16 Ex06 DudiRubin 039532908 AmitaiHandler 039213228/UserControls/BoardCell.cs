@@ -8,6 +8,7 @@ using System.Windows.Forms;
 
 namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
 {
+    using System.Diagnostics;
     using System.Drawing.Drawing2D;
 
     using B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228;
@@ -15,7 +16,7 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
 
     public partial class BoardCell : PictureBox
     {
-        private readonly Color r_HighlightColor = Color.BlueViolet;
+        private readonly Color r_HighlightColor = Color.HotPink;
         private Board.eSlotState m_CurrentState;
         private Timer m_BlinkTimer;
         private Panel m_ColorPanel;
@@ -30,18 +31,6 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
             {
                 m_CurrentState = value;
                 UpdateImage();
-            }
-        }
-
-        public bool Highlight
-        {
-            get
-            {
-                return m_ColorPanel.Visible == true;
-            }
-            set
-            {
-                m_ColorPanel.Visible = value;
             }
         }
 
@@ -69,6 +58,19 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
             {
                 m_BlinkTimer.Stop();
             }
+            UpdateImage();
+        }
+
+        private bool Highlight
+        {
+            get
+            {
+                return m_ColorPanel.Visible;
+            }
+            set
+            {
+                m_ColorPanel.Visible = value;
+            }
         }
 
         private void CreateColiorPanel()
@@ -92,28 +94,21 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
             Highlight = !Highlight;
         }
 
-        public void SetBlinking(bool i_Blink)
+        private void ToggleEmptyRegion(bool i_Empty)
         {
-            if (i_Blink)
+            GraphicsPath emptyPath = new GraphicsPath();
+            int padding = 3;
+            emptyPath.AddRectangle(new Rectangle(0, 0, Size.Width, Size.Height));
+            emptyPath.AddEllipse(new Rectangle(padding, padding, Size.Width - padding * 2, Size.Height - padding * 2));
+            if (i_Empty)
             {
-
+                Region = new Region(emptyPath);
             }
             else
             {
-                
+                Region = null;
+                m_ColorPanel.Region = new Region(emptyPath);
             }
-        }
-
-        private void ToggleEmptyRegion(bool i_Empty)
-        {
-            GraphicsPath path = new GraphicsPath();
-            int padding = 3;
-            path.AddRectangle(new Rectangle(0, 0, Size.Width, Size.Height));
-            if (i_Empty)
-            {
-                path.AddEllipse(new Rectangle(padding, padding, Size.Width - padding * 2, Size.Height - padding * 2));   
-            }
-            Region = new Region(path);
         }
 
         private void UpdateImage()

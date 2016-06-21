@@ -242,7 +242,7 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
         {
             foreach (Point point in i_WinningCoordinates)
             {
-                m_CellMatrix[point.X, point.Y].Highlight = true;
+                m_CellMatrix[point.X, point.Y].SetBlink(true);
             }
         }
     }
