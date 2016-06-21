@@ -203,7 +203,7 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228
             if (CheckIfWin())
             {
                 //TODO: mark winning row
-                m_GameWrapperWindow.MarkWinningRow(null);
+                m_GameWrapperWindow.MarkWinningRow(BoardAnalyzer.m_WinningCoordinates);
                 //
                 ShowGameWinScreen();
             }

@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Drawing;
 
 namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228
 {
     internal class BoardAnalyzer
     {
+        internal static List<Point> m_WinningCoordinates = new List<Point>();
         internal static bool IsGameWon(ref Board i_Board)
         {
             /// Vertical search for winner
@@ -18,6 +20,10 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228
                     i_Board.m_slotsMatrix[col, row] == i_Board.m_slotsMatrix[col, row + 2] &&
                     i_Board.m_slotsMatrix[col, row] == i_Board.m_slotsMatrix[col, row + 3])
                     {
+                        m_WinningCoordinates.Add(new Point(col, row));
+                        m_WinningCoordinates.Add(new Point(col, row + 1));
+                        m_WinningCoordinates.Add(new Point(col, row + 2));
+                        m_WinningCoordinates.Add(new Point(col, row + 3));
                         return true;
                     }
                 }
@@ -33,6 +39,10 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228
                         i_Board.m_slotsMatrix[col, row] == i_Board.m_slotsMatrix[col + 2, row] &&
                         i_Board.m_slotsMatrix[col, row] == i_Board.m_slotsMatrix[col + 3, row])
                     {
+                        m_WinningCoordinates.Add(new Point(col, row));
+                        m_WinningCoordinates.Add(new Point(col + 1, row));
+                        m_WinningCoordinates.Add(new Point(col + 2, row));
+                        m_WinningCoordinates.Add(new Point(col + 3, row));
                         return true;
                     }
                 } 
@@ -48,6 +58,10 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228
                         i_Board.m_slotsMatrix[col, row] == i_Board.m_slotsMatrix[col + 2, row + 2] &&
                         i_Board.m_slotsMatrix[col, row] == i_Board.m_slotsMatrix[col + 3, row + 3])
                     {
+                        m_WinningCoordinates.Add(new Point(col, row));
+                        m_WinningCoordinates.Add(new Point(col + 1, row + 1));
+                        m_WinningCoordinates.Add(new Point(col + 2, row + 2));
+                        m_WinningCoordinates.Add(new Point(col + 3, row + 3));
                         return true;
                     }
                 }
@@ -63,6 +77,10 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228
                         i_Board.m_slotsMatrix[col, row] == i_Board.m_slotsMatrix[col + 2, row - 2] &&
                         i_Board.m_slotsMatrix[col, row] == i_Board.m_slotsMatrix[col + 3, row - 3])
                     {
+                        m_WinningCoordinates.Add(new Point(col, row));
+                        m_WinningCoordinates.Add(new Point(col + 1, row - 1));
+                        m_WinningCoordinates.Add(new Point(col + 2, row - 2));
+                        m_WinningCoordinates.Add(new Point(col + 3, row - 3));
                         return true;
                     }
                 }

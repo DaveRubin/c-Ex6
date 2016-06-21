@@ -240,7 +240,10 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
 
         public void HighLightCoordinates(List<Point> i_WinningCoordinates)
         {
-            
+            foreach (Point point in i_WinningCoordinates)
+            {
+                m_CellMatrix[point.X, point.Y].Highlight = true;
+            }
         }
     }
 }
