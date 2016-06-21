@@ -12,7 +12,6 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
 
     public partial class ColumnSelector : UserControl
     {
-
         private const int k_IdleOpacity = 0;
         private const int k_HoverOpacity = 30;
         private const int k_ClickOpacity = 80;

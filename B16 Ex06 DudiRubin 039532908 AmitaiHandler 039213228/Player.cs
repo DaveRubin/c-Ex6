@@ -38,6 +38,7 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228
             {
                 return m_name;
             }
+
             set
             {
                 m_name = value;

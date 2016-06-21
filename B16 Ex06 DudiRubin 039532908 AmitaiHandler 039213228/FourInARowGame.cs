@@ -40,29 +40,29 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228
             m_GameWrapperWindow.OnColumnSelectPressed += GameWrapperWindow_OnColumnSelectPressed;
         }
 
-        void GameWrapperWindow_OnColumnSelectPressed(int col)
+        private void GameWrapperWindow_OnColumnSelectPressed(int i_Col)
         {
-            TakeTurn(col);
+            TakeTurn(i_Col);
         }
 
-        void GameWrapperWindow_About(object sender, EventArgs e)
+        private void GameWrapperWindow_About(object sender, EventArgs e)
         {
             AboutForm aboutForm = new AboutForm();
             aboutForm.ShowDialog();
         }
 
-        void GameWrapperWindow_HowToPlay(object sender, EventArgs e)
+        private void GameWrapperWindow_HowToPlay(object sender, EventArgs e)
         {
             HowToPlayForm howToPlayForm = new HowToPlayForm();
             howToPlayForm.ShowDialog();
         }
 
-        void m_GameWrapperWindow_Exit(object sender, EventArgs e)
+        private void m_GameWrapperWindow_Exit(object sender, EventArgs e)
         {
             m_GameWrapperWindow.Close();
         }
 
-        void GameWrapperWindow_StartNewTournement(object sender, EventArgs e)
+        private void GameWrapperWindow_StartNewTournement(object sender, EventArgs e)
         {
             StartNewTournemet();
         }
@@ -73,6 +73,7 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228
             {
                 player.Score = 0;
             }
+
             StartNewGame();
         }
 
@@ -116,6 +117,7 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228
         private void StartNewGame()
         {
             GamePreferences gameSettings = m_GamePreferences.GameSettings;
+
             // from here we should initialize the game
             InitializePlayers(gameSettings.Player1Name, gameSettings.Player2Name);
             InitializeBoardForm(gameSettings);
@@ -143,10 +145,8 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228
         /// </summary>
         private void InitializeBoardForm(GamePreferences i_Preferences)
         {
-            //m_BoardViewForm = new BoardViewForm(i_Preferences);
             m_GameWrapperWindow.GameDimensions = new Point(i_Preferences.Columns, i_Preferences.Rows);
             UpdateStatusBar();
-            //m_BoardViewForm.OnColumnSelectPressed += m_BoardViewForm_OnColumnSelectPressed;
         }
 
         private void UpdateStatusBar()
@@ -154,7 +154,7 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228
             Player player1 = m_players[0];
             Player player2 = m_players[1];
 
-            //update score
+            // update score
             m_GameWrapperWindow.Scores = string.Format(
                 "{0}:{1},{2}:{3}",
                 player1.Name,
@@ -162,7 +162,7 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228
                 player2.Name,
                 player2.Score);
 
-            //update current player
+            // update current player
             Player currentPlayer = m_players[m_currentPlayerIndex];
             m_GameWrapperWindow.CurrentPlayer = currentPlayer.Name;
             Board.eSlotState slot = (m_currentPlayerIndex == 0) ? Board.eSlotState.Player1 : Board.eSlotState.Player2;
@@ -197,14 +197,12 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228
         /// </summary>
         private void TakeTurn(int i_ColSelected)
         {
-            //GameView.ShowTurnScreen(m_board, m_players[m_currentPlayerIndex].r_name);
+            // GameView.ShowTurnScreen(m_board, m_players[m_currentPlayerIndex].r_name);
             PlayerMove(i_ColSelected);
             
             if (CheckIfWin())
             {
-                //TODO: mark winning row
                 m_GameWrapperWindow.MarkWinningRow(BoardAnalyzer.m_WinningCoordinates);
-                //
                 ShowGameWinScreen();
             }
             else if (m_board.IsFull)
@@ -241,7 +239,6 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228
         {
             Player winner = m_players[m_currentPlayerIndex];
             winner.Score++;
-            //m_BoardViewForm.UpdatePlayersScore(m_players[0].Score, m_players[1].Score);
             string winText = string.Format(GameTexts.k_WinScreenTemplate, winner.Name);
             ShowEndingMessageBox(winText, GameTexts.k_WinWindowTitle);
         }

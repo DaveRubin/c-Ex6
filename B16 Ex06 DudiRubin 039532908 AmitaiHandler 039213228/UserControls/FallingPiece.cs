@@ -8,15 +8,13 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
 
     public partial class FallingPiece : Piece
     {
-
+        private const int k_MillisecondsInterval = 30;
         private int m_TartgetPos;
-        private float  m_ProceedEachTick;
+        private float m_ProceedEachTick;
         private float m_Position;
         private Timer m_LoopTimer;
-        private const int k_MillisecondsInterval = 30;
 
         public event EventHandler MotionFinished;
-
 
         public FallingPiece()
         {
@@ -29,7 +27,7 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
 
         public void MoveToY(int i_YTargetPos, int i_DurationInMS)
         {
-            //calculate how many pixels per 10 ms we'll need 
+            // calculate how many pixels per 10 ms we'll need 
             int times = i_DurationInMS / k_MillisecondsInterval;
             int delta = i_YTargetPos - Top;
             m_TartgetPos = i_YTargetPos;
@@ -37,8 +35,7 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
             m_LoopTimer.Start();
         }
 
-
-        void m_LoopTimer_Tick(object sender, EventArgs e)
+        private void m_LoopTimer_Tick(object sender, EventArgs e)
         {
             if (Top < m_TartgetPos)
             {
@@ -49,11 +46,10 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
             {
                 if (MotionFinished != null)
                 {
-                    MotionFinished.Invoke(this,EventArgs.Empty);
+                    MotionFinished.Invoke(this, EventArgs.Empty);
                     MotionFinished = null;
                 }
             }
-            
         }
 
         protected override void OnPaint(PaintEventArgs pe)

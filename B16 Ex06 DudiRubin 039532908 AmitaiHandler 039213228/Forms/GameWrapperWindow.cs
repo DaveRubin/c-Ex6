@@ -15,30 +15,47 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.Forms
 
     public partial class GameWrapperWindow : Form
     {
-
         public event EventHandler StartNewGame;
+
         public event EventHandler StartNewTournement;
+
         public event EventHandler SetGameProperties;
+
         public event EventHandler Exit;
+
         public event EventHandler HowToPlay;
+
         public event EventHandler About;
-        public delegate void ColumnSelectEventHandler(int col);
+
         public event ColumnSelectEventHandler OnColumnSelectPressed;
+
+        public delegate void ColumnSelectEventHandler(int col);
 
         public Point GameDimensions
         {
+            get
+            {
+                return GameBoard.BoardSize;
+            }
+
             set
             {
                 GameBoard.BoardSize = value;
                 FitWindowToGame();
             }
-            get { return GameBoard.BoardSize; }
         }
 
         public string CurrentPlayer
         {
-            set{ GameStatusBar.PlayerName = value; }
-            get { return GameStatusBar.PlayerName; }
+            get
+            {
+                return GameStatusBar.PlayerName;
+            }
+
+            set
+            {
+                GameStatusBar.PlayerName = value;
+            }
         }
 
         public Board.eSlotState CurrentESlotState
@@ -47,19 +64,26 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.Forms
             {
                 GameBoard.CurrrentPlayer = value;
                 CursorFollower.Image = (value == Board.eSlotState.Player1) ? Resources.CoinRed : Resources.CoinYellow;
-            } 
+            }
         }
 
         public string Scores
         {
-            set { GameStatusBar.Scores = value; }
-            get { return GameStatusBar.Scores; }
+            get
+            {
+                return GameStatusBar.Scores;
+            }
+
+            set
+            {
+                GameStatusBar.Scores = value;
+            }
         }
 
         public GameWrapperWindow()
         {
             InitializeComponent();
-            GameDimensions = new Point(4,4);
+            GameDimensions = new Point(4, 4);
             GameBoard.OnColumnSelectPressed += GameBoard_OnColumnSelectPressed;
             SetCursorFollower();
         }
@@ -69,11 +93,11 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.Forms
             CursorFollower.SetActive(true);
         }
 
-        void GameBoard_OnColumnSelectPressed(int col)
+        private void GameBoard_OnColumnSelectPressed(int col)
         {
             if (OnColumnSelectPressed != null)
             {
-                OnColumnSelectPressed.Invoke(col);   
+                OnColumnSelectPressed.Invoke(col);
             }
         }
 
@@ -82,7 +106,7 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.Forms
             base.OnShown(e);
             if (SetGameProperties != null)
             {
-                SetGameProperties.Invoke(null,null);
+                SetGameProperties.Invoke(null, null);
             }
         }
 
@@ -155,7 +179,7 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.Forms
         {
             if (About != null)
             {
-                About.Invoke(sender, e);   
+                About.Invoke(sender, e);
             }
         }
 
