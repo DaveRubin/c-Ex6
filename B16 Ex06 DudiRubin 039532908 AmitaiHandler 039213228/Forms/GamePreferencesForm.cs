@@ -4,7 +4,6 @@ using System.Windows.Forms;
 
 namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.Forms
 {
-
     public partial class GamePreferencesForm : Form
     {
         private readonly int r_minSizeVal;

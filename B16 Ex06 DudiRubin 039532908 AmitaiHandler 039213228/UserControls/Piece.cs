@@ -14,18 +14,19 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
     {
         private Board.eSlotState m_type;
 
-        public event EventHandler MotionFinished;
-
         public Board.eSlotState Type
         {
-            get { return m_type;}
+            get
+            {
+                return m_type;
+            }
+
             set
             {
                 m_type = value;
                 RedrawImage();
             }
         }
-
 
         public Piece()
         {
@@ -46,7 +47,7 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
             }
 
             Image = result;
-            Size = new Size(result.Width,result.Height);
+            Size = new Size(result.Width, result.Height);
             MinimumSize = Size;
             MaximumSize = Size;
         }

@@ -25,7 +25,8 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
         {
             get
             {
-                return m_CurrentState;;
+                return m_CurrentState;
+                ;
             }
             set
             {
@@ -129,7 +130,5 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
             }
             ToggleEmptyRegion(empty);
         }
-
-        
     }
 }
