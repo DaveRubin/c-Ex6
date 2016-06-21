@@ -18,9 +18,10 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
         private Point m_CellSize;
         private BoardCell[,] m_CellMatrix;
         private List<ColumnSelector> m_ColumnSelectors; 
-        public event GameWrapperWindow.ColumnSelectEventHandler OnColumnSelectPressed;
         private Board.eSlotState m_CuerrentPlayer;
         private int m_ColumnSelected;
+
+        public event GameWrapperWindow.ColumnSelectEventHandler OnColumnSelectPressed;
 
         public Board.eSlotState CurrrentPlayer
         {
