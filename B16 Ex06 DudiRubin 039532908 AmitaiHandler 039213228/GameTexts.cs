@@ -9,7 +9,7 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228
     /// </summary>
     internal class GameTexts
     {
-        //labels
+        // labels
         public const string k_MainMenuFormPlayer1Label = "Player1";
         public const string k_MainMenuFormPlayer2Label = "Player2";
         public const string k_MainMenuFormPlayersTitleLabel = "Players :";
@@ -17,7 +17,6 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228
         public const string k_MainMenuFormColumnsLabel = "Columns:";
         public const string k_MainMenuFormBoardSizeTitleLabel = "Board Size :";
         public const string k_MainMenuStartButtonText = "Start!";
-
 
         public const string k_ColumnIsntFreeMessageTemplate = "Column {0} isn't free, please choose another";
         public const string k_playersTurnTextTemplate = "{0}'s turn";

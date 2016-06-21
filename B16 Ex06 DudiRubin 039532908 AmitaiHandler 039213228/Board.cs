@@ -1,29 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Drawing;
-using System.Windows.Forms;
+﻿using System.Collections.Generic;
 
 namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228
 {
-    using B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.Forms;
-
     public class Board
     {
-        public readonly int r_numOfRows;
-        public readonly int r_numOfColumns;
-        public eSlotState[,] m_slotsMatrix;
+        public readonly int r_NumOfRows;
+        public readonly int r_NumOfColumns;
+        public eSlotState[,] m_SlotsMatrix;
 
         public delegate void BoardUpdateHandler(eSlotState[,] i_CellMatrix);
+
         public event BoardUpdateHandler BoardViewUpdate;
-        
 
         public eSlotState[,] SlotsMatrix
         {
             get
             {
                 // TODO: ask about a more efficient way to get the matrix out and still protect 'slotsMatrix' data
-                return (eSlotState[,])m_slotsMatrix.Clone();
+                return (eSlotState[,])m_SlotsMatrix.Clone();
             }
         }
 
@@ -32,7 +26,7 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228
             get
             {
                 bool result = true;
-                for (int i = 0; i < r_numOfColumns; i++)
+                for (int i = 0; i < r_NumOfColumns; i++)
                 {
                     if (IsColumnFree(i))
                     {
@@ -52,9 +46,9 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228
         /// <param name="i_rows"></param>
         public Board(int i_columns, int i_rows)
         {
-            r_numOfRows = i_rows;
-            r_numOfColumns = i_columns;
-            m_slotsMatrix = new eSlotState[i_columns, i_rows];
+            r_NumOfRows = i_rows;
+            r_NumOfColumns = i_columns;
+            m_SlotsMatrix = new eSlotState[i_columns, i_rows];
             EmptyBoard();
             UpdateBoardView();
         }
@@ -63,7 +57,7 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228
         {
             if (BoardViewUpdate != null)
             {
-                BoardViewUpdate.Invoke(m_slotsMatrix);
+                BoardViewUpdate.Invoke(m_SlotsMatrix);
             }
         }
 
@@ -75,43 +69,45 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228
 
             if (IsColumnFree(i_column))
             {
-                int targetRow = r_numOfRows - 1;
-                while (m_slotsMatrix[i_column, targetRow] != eSlotState.Empty)
+                int targetRow = r_NumOfRows - 1;
+                while (m_SlotsMatrix[i_column, targetRow] != eSlotState.Empty)
                 {
                     targetRow--;
                 }
 
-                m_slotsMatrix[i_column, targetRow] = i_pieceType;
+                m_SlotsMatrix[i_column, targetRow] = i_pieceType;
                 UpdateBoardView();
             }
             else
             {
                 success = false;
             }
+
             return success;
         }
 
         // remove piece from column
         public void RemovePieceFromColumn(int i_column)
         {
-           int targetRow = r_numOfRows - 1;
-           if (IsColumnFree(i_column))
-           {
-                if (m_slotsMatrix[i_column, targetRow] != eSlotState.Empty)
+            int targetRow = r_NumOfRows - 1;
+            if (IsColumnFree(i_column))
+            {
+                if (m_SlotsMatrix[i_column, targetRow] != eSlotState.Empty)
                 {
-                    while (m_slotsMatrix[i_column, targetRow] != eSlotState.Empty)
+                    while (m_SlotsMatrix[i_column, targetRow] != eSlotState.Empty)
                     {
                         targetRow--;
                     }
 
-                    m_slotsMatrix[i_column, targetRow + 1] = eSlotState.Empty;
+                    m_SlotsMatrix[i_column, targetRow + 1] = eSlotState.Empty;
                 }
-           }
-           else
-           {
-               m_slotsMatrix[i_column, 0] = eSlotState.Empty;
-           }
-           UpdateBoardView();
+            }
+            else
+            {
+                m_SlotsMatrix[i_column, 0] = eSlotState.Empty;
+            }
+
+            UpdateBoardView();
         }
 
         /// <summary>
@@ -119,18 +115,19 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228
         /// </summary>
         public void EmptyBoard()
         {
-            for (int i = 0; i < r_numOfColumns; i++)
+            for (int i = 0; i < r_NumOfColumns; i++)
             {
-                for (int j = 0; j < r_numOfRows; j++)
+                for (int j = 0; j < r_NumOfRows; j++)
                 {
-                    m_slotsMatrix[i, j] = eSlotState.Empty;
+                    m_SlotsMatrix[i, j] = eSlotState.Empty;
                 }
             }
+
             UpdateBoardView();
         }
 
-        private List<int> full = new List<int>(); 
-       
+        private List<int> full = new List<int>();
+
         /// <summary>
         /// Check if a given column is free 
         /// </summary>
@@ -138,11 +135,12 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228
         /// <returns></returns>
         private bool IsColumnFree(int i_column)
         {
-            bool res = m_slotsMatrix[i_column, 0] == eSlotState.Empty;
+            bool res = m_SlotsMatrix[i_column, 0] == eSlotState.Empty;
             if (!full.Contains(i_column) && res == false)
             {
                 full.Add(i_column);
             }
+
             return res;
         }
 

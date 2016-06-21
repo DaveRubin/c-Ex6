@@ -19,8 +19,8 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228
         /// <param name="i_board"></param>
         public static void PrintBoard(Board i_board)
         {
-            int numOfColumns = i_board.r_numOfColumns;
-            int numOfRows = i_board.r_numOfRows;
+            int numOfColumns = i_board.r_NumOfColumns;
+            int numOfRows = i_board.r_NumOfRows;
             Board.eSlotState[,] slotMatrix = i_board.SlotsMatrix;
 
             StringBuilder separatorRow = new StringBuilder();
