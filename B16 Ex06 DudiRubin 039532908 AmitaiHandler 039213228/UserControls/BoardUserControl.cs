@@ -19,7 +19,7 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
         private BoardCell[,] m_CellMatrix;
         private List<ColumnSelector> m_ColumnSelectors; 
         public event GameWrapperWindow.ColumnSelectEventHandler OnColumnSelectPressed;
-        private Board.eSlotState m_CuerrentPlayer ;
+        private Board.eSlotState m_CuerrentPlayer;
         private int m_ColumnSelected;
 
         public Board.eSlotState CurrrentPlayer
@@ -28,17 +28,20 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
             {
                 return m_CuerrentPlayer;
             }
+
             set
             {
                 m_CuerrentPlayer = value;
             }
         }
+
         public Point BoardSize
         {
             get
             {
                 return m_boardSize;
             }
+
             set
             {
                 ClearCells();
@@ -61,6 +64,7 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
             {
                 boardCell.BringToFront();
             }
+
             foreach (ColumnSelector columnSelector in m_ColumnSelectors)
             {
                 columnSelector.SendToBack();
@@ -70,9 +74,11 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
         private void RedrawBoard()
         {
             m_CellMatrix = new BoardCell[m_boardSize.X, m_boardSize.Y];
-            //create board
+
+            // create board
             CreateBoardMatrix();
-            //create column selectors
+
+            // create column selectors
             CreateSelectors();
             SetControlDimensions();
         }
@@ -81,10 +87,8 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
         {
             for (int y = 0; y < m_boardSize.Y; y++)
             {
-
                 for (int x = 0; x < m_boardSize.X; x++)
                 {
-
                     BoardCell newCell = new BoardCell();
 
                     if (m_CellSize == Point.Empty)
@@ -93,7 +97,7 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
                     }
 
                     m_CellMatrix[x, y] = newCell;
-                    newCell.Location = new Point(m_CellSize.X * x, m_CellSize.Y * (y+1) );
+                    newCell.Location = new Point(m_CellSize.X * x, m_CellSize.Y * (y + 1));
                     Controls.Add(m_CellMatrix[x, y]);
                 }
             }
@@ -144,7 +148,8 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
                     break;
                 }
             }
-            return (index+1)*m_CellSize.Y;
+
+            return (index + 1) * m_CellSize.Y;
         }
 
         private void fallingPiece_MotionFinished(object sender, EventArgs e)
@@ -164,8 +169,8 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
         /// </summary>
         private void SetControlDimensions()
         {
-            //add extra row for selectors
-            Point sizeInPixels = new Point(BoardSize.X* m_CellSize.X, (BoardSize.Y + 1) * m_CellSize.Y);
+            // add extra row for selectors
+            Point sizeInPixels = new Point(BoardSize.X * m_CellSize.X, (BoardSize.Y + 1) * m_CellSize.Y);
             Size = new Size(sizeInPixels);
             MaximumSize = new Size(sizeInPixels);
             MinimumSize = new Size(sizeInPixels);
@@ -186,6 +191,7 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
                     Controls.Remove(boardCell);
                 }
             }
+
             m_CellMatrix = null;
         }
 
@@ -216,12 +222,11 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
                 {
                     if (i_CellMatrix[x, y] != Board.eSlotState.Empty)
                     {
-                        Debug.Print("{0},{1}",x,y);
+                        Debug.Print("{0}, {1}", x, y);
                     }
-                    m_CellMatrix[x, y].CurrentState = i_CellMatrix[x, y];
 
-                }
-                
+                    m_CellMatrix[x, y].CurrentState = i_CellMatrix[x, y];
+                }   
             }
 
             CheckForFullColumnsAndLockSelectors();
@@ -232,7 +237,7 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
         /// </summary>
         private void CheckForFullColumnsAndLockSelectors()
         {
-            for (int i = 0; i < m_ColumnSelectors.Count ; i++)
+            for (int i = 0; i < m_ColumnSelectors.Count; i++)
             {
                 m_ColumnSelectors[i].Enabled = m_CellMatrix[i, 0].CurrentState == Board.eSlotState.Empty;
             }

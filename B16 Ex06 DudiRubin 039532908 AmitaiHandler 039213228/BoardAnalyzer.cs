@@ -8,6 +8,7 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228
     internal class BoardAnalyzer
     {
         internal static List<Point> m_WinningCoordinates = new List<Point>();
+
         internal static bool IsGameWon(ref Board i_Board)
         {
             /// Vertical search for winner

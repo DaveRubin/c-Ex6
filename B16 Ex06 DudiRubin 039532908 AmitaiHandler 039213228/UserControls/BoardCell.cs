@@ -25,8 +25,9 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
         {
             get
             {
-                return m_CurrentState;;
+                return m_CurrentState;
             }
+
             set
             {
                 m_CurrentState = value;
@@ -58,6 +59,7 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
             {
                 m_BlinkTimer.Stop();
             }
+
             UpdateImage();
         }
 
@@ -67,6 +69,7 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
             {
                 return m_ColorPanel.Visible;
             }
+
             set
             {
                 m_ColorPanel.Visible = value;
@@ -89,7 +92,7 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
             m_BlinkTimer.Tick += m_BlinkTimer_Tick;
         }
 
-        void m_BlinkTimer_Tick(object sender, EventArgs e)
+        internal void m_BlinkTimer_Tick(object sender, EventArgs e)
         {
             Highlight = !Highlight;
         }
@@ -99,7 +102,7 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
             GraphicsPath emptyPath = new GraphicsPath();
             int padding = 3;
             emptyPath.AddRectangle(new Rectangle(0, 0, Size.Width, Size.Height));
-            emptyPath.AddEllipse(new Rectangle(padding, padding, Size.Width - padding * 2, Size.Height - padding * 2));
+            emptyPath.AddEllipse(new Rectangle(padding, padding, Size.Width - (padding * 2), Size.Height - (padding * 2)));
             if (i_Empty)
             {
                 Region = new Region(emptyPath);
@@ -127,9 +130,8 @@ namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
                 Image = Resources.EmptyCell;
                 empty = true;
             }
+
             ToggleEmptyRegion(empty);
         }
-
-        
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace B16_Ex06_DudiRubin_039532908_AmitaiHandler_039213228.UserControls
 {
-    partial class BoardCell
+    public partial class BoardCell
     {
         /// <summary>
         /// Required designer variable.
@@ -17,6 +17,7 @@
             {
                 components.Dispose();
             }
+
             base.Dispose(disposing);
         }
 
